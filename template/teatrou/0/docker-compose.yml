@@ -1,5 +1,5 @@
 teatrou:
-  image: highlanderdantas/teatrou:2
+  image: highlanderdantas/teatrou:3
   restart: always
   environment: 
     - ACESS_KEY=${acess_key}
