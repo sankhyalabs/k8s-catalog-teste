@@ -1,6 +1,4 @@
-version: '2'
-services: 
-  teatrou:
+teatrou:
     image: highlanderdantas/teatrou
     restart: always
     environment: 
