@@ -1,0 +1,5 @@
+name: Jiva-W
+description: |
+  Container jiva-w com o servidor de aplicação WILDFLY
+version: 1.0
+category: Collaboration
