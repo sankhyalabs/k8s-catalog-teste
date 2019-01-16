@@ -29,14 +29,18 @@ catalog:
     - variable: "porta_bd"
       label: "Porta do Banco de Dados"
       description: |
-        Porta no qual está instalado o Banco de Dados | PORTA PADRAO ORACLE 1521 | PORTA PADRAO SQLSERVER 1433
+        Porta no qual está instalado o Banco de Dados 
+        PORTA PADRAO ORACLE 1521
+        PORTA PADRAO SQLSERVER 1433
       type: "string"
       default: ""
       required: true
     - variable: "sid_bd"
       label: "SID do Banco de Dados"
       description: |
-        SID do Banco de Dados | SID PADRAO ORACLE ORCL | SID PADRAO SQLSERVER MYSQLSERVER
+        SID do Banco de Dados 
+        SID PADRAO ORACLE ORCL
+        SID PADRAO SQLSERVER MYSQLSERVER
       type: "string"
       default: ""
       required: true
