@@ -31,14 +31,14 @@ catalog:
       description: |
         Porta no qual está instalado o Banco de Dados
       type: "string"
-      default: "1433"
+      default: ""
       required: true
     - variable: "sid_bd"
       label: "SID do Banco de Dados"
       description: |
         SID do Banco de Dados
       type: "string"
-      default: "ORCL"
+      default: ""
       required: true
     - variable: "usuario_bd"
       label: "Usuário do Banco de Dados"
