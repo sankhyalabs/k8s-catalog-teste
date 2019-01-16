@@ -10,11 +10,13 @@ catalog:
         Pacote que será instalado (será buscado no ftp-sankhya)
       type: "string"
       required: true
-    - variable: "tp_bd"
+    - variable: tp_bd
       label: "Tipo do Banco de Dados"
       description: |
         Tipo do Banco Dados
       type: enum
+      default: ORACLE
+      required: true
       options:
         - ORACLE
         - SQL_SERVER
@@ -29,7 +31,11 @@ catalog:
       description: |
         Porta no qual está instalado o Banco de Dados
       type: "string"
+      {{- if eq .Values.tp_bd "SQL_SERVER"}}
+      default: "1433"
+      {{- else }}
       default: "1521"
+      {{- end}}
       required: true
     - variable: "sid_bd"
       label: "SID do Banco de Dados"
