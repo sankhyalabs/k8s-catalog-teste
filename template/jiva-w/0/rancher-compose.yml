@@ -31,11 +31,7 @@ catalog:
       description: |
         Porta no qual está instalado o Banco de Dados
       type: "string"
-      {{- if eq .Values.tp_bd "SQL_SERVER"}}
       default: "1433"
-      {{- else }}
-      default: "1521"
-      {{- end}}
       required: true
     - variable: "sid_bd"
       label: "SID do Banco de Dados"
