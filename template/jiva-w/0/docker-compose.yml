@@ -38,7 +38,7 @@ services:
         response_timeout: 60000
 
   sas:
-    image: highlanderdantas/sas:0.2
+    image: highlanderdantas/sas:0.3
     restart: always
     environment:
       - IP_BD_JIVAW=${ip_bd}
@@ -65,7 +65,7 @@ services:
 
   {{- if eq .Values.data_sync "true"}}
   datasync:
-    image: highlanderdantas/datasync:0.2
+    image: highlanderdantas/datasync:0.3
     restart: always
     volumes: 
       - /home/mgeweb/compartilhado/clientes/{{ .Stack.Name }}/datasync/conf:/home/mgeweb/DataSync/conf
