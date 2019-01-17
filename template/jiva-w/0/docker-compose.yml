@@ -38,7 +38,7 @@ services:
         response_timeout: 60000
 
   sas:
-    image: highlanderdantas/sas:0.5
+    image: highlanderdantas/sas:0.5.1
     restart: always
     environment:
       - IP_BD_JIVAW=${ip_bd}
