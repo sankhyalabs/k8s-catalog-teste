@@ -38,7 +38,7 @@ services:
         response_timeout: 60000
 
   sas:
-    image: highlanderdantas/sas:6
+    image: highlanderdantas/sas:7
     restart: always
     environment:
       - IP_BD_JIVAW=${ip_bd}
@@ -51,7 +51,7 @@ services:
     volumes: 
       - /home/mgeweb/compartilhado/pacotes/sas:/home/mgeweb/pacotes-sas/  # Pacotes do SAS
       - /home/mgeweb/compartilhado/clientes/{{ .Stack.Name }}/SAS/:/opt/SAS/licenca # Licenca do SAS
-    command: ["/bin/sh","-c", "java -jar /opt/DSM/docker-sas-manager.jar /SAS  && sleep 2 && /opt/./run-sas.sh && sleep 2 && tail -f /opt/SAS/log/server*.log"]
+    command: ["/bin/sh","-c", "sudo chown -R mgeweb:mgeweb/pacotes-sas/ /opt/SAS/licenca && java -jar /opt/DSM/docker-sas-manager.jar /SAS  && sleep 2 && /opt/./run-sas.sh && sleep 2 && tail -f /opt/SAS/log/server*.log"]
     mem_reservation: 100m
     health_check:
       response_timeout: 60000
@@ -65,7 +65,7 @@ services:
 
   {{- if eq .Values.data_sync "true"}}
   datasync:
-    image: highlanderdantas/datasync:6
+    image: highlanderdantas/datasync:7
     restart: always
     volumes: 
       - /home/mgeweb/compartilhado/clientes/{{ .Stack.Name }}/datasync/conf:/home/mgeweb/DataSync/conf
