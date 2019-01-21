@@ -65,7 +65,7 @@ services:
 
   {{- if eq .Values.data_sync "true"}}
   datasync:
-    image: highlanderdantas/datasync:5
+    image: highlanderdantas/datasync:6
     restart: always
     volumes: 
       - /home/mgeweb/compartilhado/clientes/{{ .Stack.Name }}/datasync/conf:/home/mgeweb/DataSync/conf
