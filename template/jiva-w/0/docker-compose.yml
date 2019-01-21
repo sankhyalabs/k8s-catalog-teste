@@ -38,7 +38,7 @@ services:
         response_timeout: 60000
 
   sas:
-    image: paulohms/sas:9.9
+    image: paulohms/sas:10.0
     restart: always
     environment:
       - IP_BD_JIVAW=${ip_bd}
