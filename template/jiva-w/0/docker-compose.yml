@@ -51,7 +51,7 @@ services:
     volumes: 
       - /home/mgeweb/compartilhado/pacotes/sas:/home/mgeweb/pacotes-sas/  # Pacotes do SAS
       - /home/mgeweb/compartilhado/clientes/{{ .Stack.Name }}/SAS/:/opt/SAS/licenca # Licenca do SAS
-    command: ["/bin/sh","-c", "sudo chown -R mgeweb:mgeweb  /home/mgeweb/pacotes-sas/ /opt/SAS*/* /tmp && java -jar /opt/DSM/docker-sas-manager.jar /SAS  && sleep 2 && /opt/./run-sas.sh && sleep 2 && tail -f /opt/SAS/log/server*.log"]
+    command: ["/bin/sh","-c", "tar -xzf /tmp/SAS.tar.gz -C /tmp && sudo chown -R mgeweb:mgeweb  /home/mgeweb/pacotes-sas/ /opt/SAS*/* /tmp && java -jar /opt/DSM/docker-sas-manager.jar /SAS  && sleep 2 && /opt/./run-sas.sh && sleep 2 && tail -f /opt/SAS/log/server*.log"]
     mem_reservation: 100m
     health_check:
       response_timeout: 60000
