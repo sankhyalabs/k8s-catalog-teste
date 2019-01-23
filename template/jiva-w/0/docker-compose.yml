@@ -1,7 +1,7 @@
 version: '2'
 services:
   jiva-w:
-    image: highlanderdantas/snk-jiva-w:3.1
+    image: highlanderdantas/snk-jiva-w:3.2
     restart: always
     environment:
       - IP_BD_JIVAW=${ip_bd}
