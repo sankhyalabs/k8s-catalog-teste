@@ -21,7 +21,7 @@ services:
       - /home/mgeweb/compartilhado/clientes/{{ .Stack.Name }}/SanNFe/:/home/mgeweb/SanNFe # Certificados do SanNFe
       - /home/mgeweb/compartilhado/pacotes/sannfe:/home/mgeweb/pacotes-sannfe/  # Pacotes do SanNFe
       - /home/mgeweb/compartilhado/pacotes/jivaw:/home/mgeweb/sankhyaw-dpm/pkgs # Pkgs Jiva-W
-    command: ["/bin/sh","-c", "sudo chown mgeweb:mgeweb / /home/mgeweb/sankhyaw-dpm/ /home/mgeweb/wildfly_producao/standalone/log/  && /home/mgeweb/./wildfly.sh && java -jar /home/mgeweb/DPM/docker-package-manager.jar && sleep 2 && /home/mgeweb/./sannfe.sh && /home/mgeweb/./visualvm.sh && sleep 2 && /home/mgeweb/wildfly_producao/bin/./standalone.sh -Djape.lazy.init=true -Djape.lob.fields.as.lazy=true -Djape.ignore.ligacao.inconsistente=true"]
+    command: ["/bin/sh","-c", "sudo chown mgeweb:mgeweb / /home/mgeweb/sankhyaw-dpm/ /home/mgeweb/wildfly_producao/standalone/log/  && /home/mgeweb/./wildfly.sh && java -jar /home/mgeweb/DPM/docker-package-manager.jar && sleep 2 && /home/mgeweb/./sannfe.sh && /home/mgeweb/./visualvm.sh && sed -i 's/<min-pool-size>100</<min-pool-size>10</g' /home/mgeweb/wildfly_producao/standalone/deployments/mge-ds.xml && sed -i 's/<max-pool-size>100</<max-pool-size>50</g' /home/mgeweb/wildfly_producao/standalone/deployments/mge-ds.xml &&  sleep 2 && /home/mgeweb/wildfly_producao/bin/./standalone.sh -Djape.lazy.init=true -Djape.lob.fields.as.lazy=true -Djape.ignore.ligacao.inconsistente=true"]
     mem_limit: ${memory_container}m 
     mem_reservation: 1024m
     mem_swappiness: 10 # Irá usar o swap apenas quando tiver 10% de mem disponível
