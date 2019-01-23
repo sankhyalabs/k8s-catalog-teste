@@ -10,11 +10,13 @@ catalog:
         Pacote que será instalado (será buscado no ftp-sankhya)
       type: "string"
       required: true
-    - variable: "tp_bd"
+    - variable: tp_bd
       label: "Tipo do Banco de Dados"
       description: |
         Tipo do Banco Dados
       type: enum
+      default: ORACLE
+      required: true
       options:
         - ORACLE
         - SQL_SERVER
@@ -27,16 +29,20 @@ catalog:
     - variable: "porta_bd"
       label: "Porta do Banco de Dados"
       description: |
-        Porta no qual está instalado o Banco de Dados
+        Porta no qual está instalado o Banco de Dados | 
+        PORTA PADRAO ORACLE 1521 | 
+        PORTA PADRAO SQLSERVER 1433 |
       type: "string"
-      default: "1521"
+      default: ""
       required: true
     - variable: "sid_bd"
       label: "SID do Banco de Dados"
       description: |
-        SID do Banco de Dados
+        SID do Banco de Dados | 
+        SID PADRAO ORACLE ORCL | 
+        SID PADRAO SQLSERVER MYSQLSERVER
       type: "string"
-      default: "ORCL"
+      default: ""
       required: true
     - variable: "usuario_bd"
       label: "Usuário do Banco de Dados"
@@ -72,8 +78,8 @@ catalog:
       default: false
       required: true
     - variable: data_sync
-      label: "Cliente possui DataSync?"
-      description: Caso seja marcado true irá subir um container para o DataSync
+      label: "Cliente possui Data Sync?"
+      description: Caso seja marcado true irá subir um container para o Data Sync
       type: boolean
       default: false
       required: true
