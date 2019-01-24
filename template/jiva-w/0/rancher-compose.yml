@@ -19,7 +19,7 @@ catalog:
       required: true
       options:
         - ORACLE
-        - SQL_SERVER
+        - SQLSERVER
     - variable: "ip_bd"
       label: "IP do Banco de Dados"
       description: |
