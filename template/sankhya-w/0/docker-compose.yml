@@ -22,7 +22,7 @@ services:
       - /home/mgeweb/compartilhado/pacotes/sannfe:/home/mgeweb/pacotes-sannfe/  # Pacotes do SanNFe
       - /home/mgeweb/compartilhado/pacotes/jivaw:/home/mgeweb/sankhyaw-dpm/pkgs # Pkgs Jiva-W
     command: ["/bin/sh","-c", "sudo chown -R mgeweb:mgeweb /home/mgeweb/sankhyaw-dpm/ /home/mgeweb/repositorio /home/mgeweb/pacotes-sannfe/ && /home/mgeweb/./wildfly.sh && java -jar /home/mgeweb/DPM/docker-package-manager.jar && sleep 2 && /home/mgeweb/./sannfe.sh &&  sudo chown -R mgeweb:mgeweb /home/mgeweb/SanNFe /home/mgeweb/wildfly_producao/standalone/log  && /home/mgeweb/./visualvm.sh && sed -i 's/<min-pool-size>100</<min-pool-size>10</g' /home/mgeweb/wildfly_producao/standalone/deployments/mge-ds.xml && sed -i 's/<max-pool-size>100</<max-pool-size>50</g' /home/mgeweb/wildfly_producao/standalone/deployments/mge-ds.xml &&  sleep 2 && /home/mgeweb/wildfly_producao/bin/./standalone.sh -Djape.lazy.init=true -Djape.lob.fields.as.lazy=true -Djape.ignore.ligacao.inconsistente=true"]
-    mem_limit: ${memory_container}m 
+    mem_limit: ${memory_container}m
     mem_reservation: 1024m
     mem_swappiness: 10 # Irá usar o swap apenas quando tiver 10% de mem disponível
     drain_timeout_ms: 10000
@@ -38,7 +38,7 @@ services:
         response_timeout: 60000
 
   sas:
-    image: highlanderdantas/sas:7.3
+    image: highlanderdantas/sas:7.6
     restart: always
     environment:
       - IP_BD_SNKW=${ip_bd}
@@ -51,7 +51,7 @@ services:
     volumes: 
       - /home/mgeweb/compartilhado/pacotes/sas:/home/mgeweb/pacotes-sas/  # Pacotes do SAS
       - /home/mgeweb/compartilhado/clientes/{{ .Stack.Name }}/SAS/:/opt/SAS/licenca # Licenca do SAS
-    command: ["/bin/sh","-c", "sudo chown -R mgeweb:mgeweb  /home/mgeweb/pacotes-sas/ /tmp/ && java -jar /opt/DSM/docker-sas-manager.jar /SAS  && tar -xzf /tmp/SAS.tar.gz -C /tmp/ &&  sudo chown -R mgeweb:mgeweb /tmp/ /opt/SAS/ && sleep 2  && /opt/./run-sas.sh && sleep 2 && tail -f /opt/SAS/log/server*.log"]
+    command: ["/bin/sh","-c", "sudo chown -R mgeweb:mgeweb  /home/mgeweb/pacotes-sas/ /tmp/ && java -jar /opt/DSM/docker-sas-manager.jar /SAS  && tar -xzf /tmp/SAS.tar.gz -C /tmp/ &&  sudo chown -R mgeweb:mgeweb /tmp/ /opt/SAS/* && sleep 2  && /opt/./run-sas.sh && sleep 2 && tail -f /opt/SAS/log/server*.log"]
     mem_reservation: 100m
     health_check:
       response_timeout: 60000
