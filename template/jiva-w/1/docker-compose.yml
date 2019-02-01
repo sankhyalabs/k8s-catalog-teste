@@ -16,8 +16,8 @@ services:
     links:
       - sas
     volumes: 
-      - /home/mgeweb/compartilhado/clientes/{{ .User.Name }}/repositorio/:/home/mgeweb/repositorio # Repositório de arquivos
-      - /home/mgeweb/compartilhado/clientes/{{ .Username  }}/logs/:/home/mgeweb/wildfly_producao/standalone/log # logs do JBOSS
+      - /home/mgeweb/compartilhado/clientes/{{ .Name }}/repositorio/:/home/mgeweb/repositorio # Repositório de arquivos
+      - /home/mgeweb/compartilhado/clientes/{{ .Environment.Name  }}/logs/:/home/mgeweb/wildfly_producao/standalone/log # logs do JBOSS
       - /home/mgeweb/compartilhado/clientes/{{ .Stack.Name }}/SanNFe/:/home/mgeweb/SanNFe # Certificados do SanNFe
       - /home/mgeweb/compartilhado/pacotes/sannfe:/home/mgeweb/pacotes-sannfe/  # Pacotes do SanNFe
       - /home/mgeweb/compartilhado/pacotes/jivaw:/home/mgeweb/sankhyaw-dpm/pkgs # Pkgs Jiva-W
