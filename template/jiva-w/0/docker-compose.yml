@@ -13,6 +13,7 @@ services:
       - TIPO_SERVIDOR=WILDFLY
       - TIPO_BD=${tp_bd}
       - MEMORIA_JBOSS=${memoria_jboss}
+      - CLIENTE={{ .Stack.Name }}
     links:
       - sas
     volumes: 
