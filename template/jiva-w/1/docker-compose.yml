@@ -1,7 +1,7 @@
 version: '2'
 services:
   jiva-w:
-    image: highlanderdantas/snk-jiva-w-sentry:1.0
+    image: highlanderdantas/snk-jiva-w:v1.4
     restart: always
     environment:
       - IP_BD_JIVAW=${ip_bd}
@@ -39,7 +39,7 @@ services:
         response_timeout: 60000
 
   sas:
-    image: highlanderdantas/sas:7.7
+    image: highlanderdantas/sas:v1.4
     restart: always
     environment:
       - IP_BD_JIVAW=${ip_bd}
@@ -66,7 +66,7 @@ services:
 
   {{- if eq .Values.data_sync "true"}}
   datasync:
-    image: highlanderdantas/datasync:7.1
+    image: highlanderdantas/datasync:v1.4
     restart: always
     volumes: 
       - /home/mgeweb/compartilhado/clientes/{{ .Stack.Name }}/datasync/conf:/home/mgeweb/DataSync/conf
@@ -85,7 +85,7 @@ services:
 
   {{- if eq .Values.e_social "true"}}
   sanesocial:
-    image: highlanderdantas/esocial:1.2
+    image: highlanderdantas/esocial:v1.4
     restart: always
     volumes:
       - /home/mgeweb/compartilhado/clientes/{{ .Stack.Name }}/sanesocial/conf:/home/mgeweb/sanesocial/conf

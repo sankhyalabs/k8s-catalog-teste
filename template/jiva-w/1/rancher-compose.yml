@@ -1,7 +1,7 @@
 version: '2'
 catalog:
   name: "Jiva-W"
-  version: "TH-2.0"
+  version: "v1.4"
   description: "Criar um novo container utilizando o template"
   questions:
     - variable: "pacote_jivaw"
