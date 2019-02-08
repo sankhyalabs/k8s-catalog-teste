@@ -4,15 +4,9 @@ services:
     image: iamseth/oracledb_exporter:0.0.6
     restart: always
     environment:
-      - IP_BD=${ip_bd}
-      - SID_BD=${sid_bd}
-      - USUARIO_BD=${usuario_bd}
-      - SENHA_BD=${senha_bd}
-      - DATA_SOURCE_NAME=${IP_BD}/${SENHA_BD}@IP_BD/${SID_BD}
+      - DATA_SOURCE_NAME=${usuario_bd}/${senha_bd}@${ip_bd}/${sid_bd}
     ports: 
       - "9161"
-    links: 
-      - "oracle-xe"
     health_check:
         port: 9161
         request_line: GET / HTTP/1.0
@@ -23,20 +17,3 @@ services:
         strategy: recreate
         healthy_threshold: 1
         response_timeout: 60000
-
-  oracle-xe:
-    image:  wnameless/oracle-xe-11g:16.04
-    restart: always
-    ports: 
-      - "1521"
-    health_check:
-        port: 9161
-        request_line: GET / HTTP/1.0
-        interval: 90000
-        initializing_timeout: 300000
-        reinitializing_timeout: 300000
-        unhealthy_threshold: 3
-        strategy: recreate
-        healthy_threshold: 1
-        response_timeout: 60000
-    
