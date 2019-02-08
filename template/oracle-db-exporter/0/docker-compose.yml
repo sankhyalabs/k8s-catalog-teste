@@ -1,6 +1,6 @@
 version: '2'
 services:
-  sankhya-w:
+  oracledb_exporter:
     image: iamseth/oracledb_exporter:0.0.6
     restart: always
     environment:
