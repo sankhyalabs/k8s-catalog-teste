@@ -1,12 +1,13 @@
 version: '2'
 services:
   oracledb-exporter:
-    image: iamseth/oracledb_exporter
+    image: highlanderdantas/oracledb_exporter:1.0
     restart: always
     environment:
       - DATA_SOURCE_NAME=${usuario_bd}/${senha_bd}@${ip_bd}/${sid_bd}
     ports: 
       - "9161"
+    command: ["/bin/sh","-c", "./oracledb_exporter"]
     health_check:
         port: 9161
         request_line: GET / HTTP/1.0
