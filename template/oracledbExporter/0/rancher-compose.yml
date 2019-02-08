@@ -1,6 +1,6 @@
 version: '2'
 catalog:
-  name: "OracleDB-Exporter"
+  name: "OracldbExporter"
   version: "1.0"
   description: "Criar um novo container utilizando o template"
   questions: 
