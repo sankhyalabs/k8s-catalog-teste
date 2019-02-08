@@ -1,6 +1,6 @@
-name: OracldbExporter
+name: OracleDB-Exporter
 description: |
-  Container OracldbExporter com para monitoramento pelo Prometheus e Grafana
+  Container OracleDB-Exporter com para monitoramento pelo Prometheus e Grafana
 version: 1.0
 category: Collaboration
 maintainer: Highlander Dantas <highlander.dantas@sankhya.com.br>
