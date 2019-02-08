@@ -12,14 +12,14 @@ services:
     ports: 
       - "9161"
     health_check:
-    port: 9161
-    request_line: GET / HTTP/1.0
-    interval: 90000
-    initializing_timeout: 300000
-    reinitializing_timeout: 300000
-    unhealthy_threshold: 3
-    strategy: recreate
-    healthy_threshold: 1
-    response_timeout: 60000
+        port: 9161
+        request_line: GET / HTTP/1.0
+        interval: 90000
+        initializing_timeout: 300000
+        reinitializing_timeout: 300000
+        unhealthy_threshold: 3
+        strategy: recreate
+        healthy_threshold: 1
+        response_timeout: 60000
 
     
