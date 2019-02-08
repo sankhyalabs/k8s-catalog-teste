@@ -1,6 +1,6 @@
-name: Sankhya-W
+name: OracleDB Exporter
 description: |
-  Container Sankhya-W com o servidor de aplicação WILDFLY
+  Container OracleDB Exporter com para monitoramento pelo Prometheus e Grafana
 version: 1.1
 category: Collaboration
 maintainer: Highlander Dantas <highlander.dantas@sankhya.com.br>
