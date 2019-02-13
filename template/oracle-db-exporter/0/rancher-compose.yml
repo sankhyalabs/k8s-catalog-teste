@@ -22,6 +22,7 @@ catalog:
       description: |
         Usuário do Banco de Dados
       type: "string"
+      default: "system"
       required: true
     - variable: "senha_bd"
       label: "Senha do Banco de Dados"
