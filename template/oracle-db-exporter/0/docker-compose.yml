@@ -1,7 +1,7 @@
 version: '2'
 services:
   oracledb-exporter:
-    image: highlanderdantas/oracledb_exporter:1.2
+    image: highlanderdantas/oracledb_exporter:1.3
     restart: always
     environment:
       - DATA_SOURCE_NAME=${usuario_bd}/${senha_bd}@${ip_bd}/${sid_bd}
