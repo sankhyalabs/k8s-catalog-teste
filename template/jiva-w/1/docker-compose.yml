@@ -79,7 +79,7 @@ services:
       - /home/mgeweb/compartilhado/clientes/{{ .Stack.Name }}/datasync/tracking:/home/mgeweb/DataSync/tracking
       - /home/mgeweb/compartilhado/clientes/{{ .Stack.Name }}/datasync/work:/home/mgeweb/DataSync/work
       - /home/mgeweb/compartilhado/pacotes/datasync:/home/mgeweb/pacotes-datasync/  # Pacotes do Data Sync
-    command: ["/bin/sh","-c", "sudo chown -R mgeweb:mgeweb /home/mgeweb/DataSync/* /home/mgeweb/pacotes-datasync/ && java -jar /home/mgeweb/DDM/docker-datasync-manager.jar && /home/mgeweb/DDM/scripts/./run-datasync.sh && /home/mgeweb/DataSync/./datasync-service start && sleep 3 && tail -f /home/mgeweb/DataSync/log/server.log"]
+    command: ["/bin/sh","-c", "sudo chown -R mgeweb:mgeweb /home/mgeweb/pacotes-datasync/ && java -jar /home/mgeweb/DDM/docker-datasync-manager.jar  && sudo chown -R mgeweb:mgeweb /home/mgeweb/DataSync/ && /home/mgeweb/DDM/scripts/./run-datasync.sh && /home/mgeweb/DataSync/./datasync-service start && sleep 3 && tail -f /home/mgeweb/DataSync/log/server.log"]
     mem_reservation: 512m
   {{- end}}
 
