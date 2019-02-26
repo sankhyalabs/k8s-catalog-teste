@@ -14,15 +14,18 @@ services:
       - TIPO_BD=${tp_bd}
       - MEMORIA_JBOSS=${memoria_jboss}
       - CLIENTE={{ .Stack.Name }}
+      - APP=Jiva-W
+      - PATH_LOG=/home/mgeweb/wildfly_producao/standalone/log/server.log
     links:
       - sas
     volumes: 
       - /home/mgeweb/compartilhado/clientes/{{ .Stack.Name }}/repositorio/:/home/mgeweb/repositorio # Repositório de arquivos
-      - /home/mgeweb/compartilhado/clientes/{{ .Stack.Name }}/logs/:/home/mgeweb/wildfly_producao/standalone/log # logs do JBOSS
+      - /home/mgeweb/compartilhado/clientes/{{ .Stack.Name }}/logs/:/home/mgeweb/wildfly_producao/standalon'e/log # logs do JBOSS
       - /home/mgeweb/compartilhado/clientes/{{ .Stack.Name }}/SanNFe/:/home/mgeweb/SanNFe # Certificados do SanNFe
+      - /home/mgeweb/compartilhado/clientes/{{ .Stack.Name }}/Anexos/:/home/mgeweb/SankhyaW/Anexos # Repositorio de Anexos 
       - /home/mgeweb/compartilhado/pacotes/sannfe:/home/mgeweb/pacotes-sannfe/  # Pacotes do SanNFe
       - /home/mgeweb/compartilhado/pacotes/jivaw:/home/mgeweb/sankhyaw-dpm/pkgs # Pkgs Jiva-W
-    command: ["/bin/sh","-c", "sudo chown -R mgeweb:mgeweb /home/mgeweb/sankhyaw-dpm/ /home/mgeweb/repositorio /home/mgeweb/pacotes-sannfe/ && /home/mgeweb/DPM/scripts/./wildfly.sh && java -jar /home/mgeweb/DPM/docker-package-manager.jar && sleep 2 && /home/mgeweb/DPM/scripts/./sannfe.sh &&  sudo chown -R mgeweb:mgeweb /home/mgeweb/SanNFe /home/mgeweb/wildfly_producao/standalone/log  && /home/mgeweb/DPM/scripts/./visualvm.sh && sed -i 's/<min-pool-size>100</<min-pool-size>10</g' /home/mgeweb/wildfly_producao/standalone/deployments/mge-ds.xml && sed -i 's/<max-pool-size>100</<max-pool-size>50</g' /home/mgeweb/wildfly_producao/standalone/deployments/mge-ds.xml &&  sleep 2 && /home/mgeweb/wildfly_producao/bin/./standalone.sh -Djape.lazy.init=true -Djape.lob.fields.as.lazy=true -Djape.ignore.ligacao.inconsistente=true"]
+    command: ["/bin/sh","-c", "sudo chown -R mgeweb:mgeweb /home/mgeweb/sankhyaw-dpm/  /home/mgeweb/SankhyaW/Anexos /home/mgeweb/repositorio /home/mgeweb/pacotes-sannfe/ && /home/mgeweb/DPM/scripts/./wildfly.sh && java -jar /home/mgeweb/DPM/docker-package-manager.jar && sleep 2 && /home/mgeweb/DPM/scripts/./sannfe.sh &&  sudo chown -R mgeweb:mgeweb /home/mgeweb/SanNFe /home/mgeweb/wildfly_producao/standalone/log  && /home/mgeweb/DPM/scripts/./visualvm.sh && sed -i 's/<min-pool-size>100</<min-pool-size>10</g' /home/mgeweb/wildfly_producao/standalone/deployments/mge-ds.xml && sed -i 's/<max-pool-size>100</<max-pool-size>50</g' /home/mgeweb/wildfly_producao/standalone/deployments/mge-ds.xml &&  sleep 2 && nohup /home/mgeweb/DPM/scripts/./sentry  2>&1 </dev/null & sleep 2 && echo 'y' && /home/mgeweb/wildfly_producao/bin/./standalone.sh -Djape.lazy.init=true -Djape.lob.fields.as.lazy=true -Djape.ignore.ligacao.inconsistente=true"]
     mem_limit: ${memory_container}m 
     mem_reservation: 1024m
     mem_swappiness: 10 # Irá usar o swap apenas quando tiver 10% de mem disponível
@@ -87,11 +90,15 @@ services:
   sanesocial:
     image: highlanderdantas/esocial:v1.4
     restart: always
+    environment:
+      - CLIENTE={{ .Stack.Name }}
+      - APP=SanEsocial
+      - PATH_LOG=/home/mgeweb/sanesocial/log/server.log
     volumes:
       - /home/mgeweb/compartilhado/clientes/{{ .Stack.Name }}/sanesocial/conf:/home/mgeweb/sanesocial/conf
       - /home/mgeweb/compartilhado/clientes/{{ .Stack.Name }}/sanesocial/certificados:/home/mgeweb/sanesocial/certificados
       - /home/mgeweb/compartilhado/clientes/{{ .Stack.Name }}/sanesocial/log:/home/mgeweb/sanesocial/log
       - /home/mgeweb/compartilhado/clientes/{{ .Stack.Name }}/sanesocial/properties:/home/mgeweb/sanesocial/properties
-    command: ["/bin/sh","-c", "java -jar /home/mgeweb/DSEM/docker-sanesocial-manager.jar && /home/mgeweb/DSEM/scripts/./run-sanesocial.sh && /home/mgeweb/sanesocial/./sanesocial-service start && sleep 3 && tail -f /home/mgeweb/sanesocial/log/server.log"]
+    command: ["/bin/sh","-c", "java -jar /home/mgeweb/DSEM/docker-sanesocial-manager.jar && /home/mgeweb/DSEM/scripts/./run-sanesocial.sh && /home/mgeweb/sanesocial/./sanesocial-service start && sleep 3 && nohup /home/mgeweb/DPM/scripts/./sentry  2>&1 </dev/null & sleep 2 && echo 'y' && tail -f /home/mgeweb/sanesocial/log/server.log"]
     mem_reservation: 512m
   {{- end}}
