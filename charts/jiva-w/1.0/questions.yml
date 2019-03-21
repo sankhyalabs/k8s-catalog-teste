@@ -1,4 +1,5 @@
 questions:
+# Pacote Instalação
 - variable: pacote.versao
   label: "Escolha a versão"
   description: "Pacote que será instalado (será buscado no ftp-sankhya)"
@@ -15,6 +16,8 @@ questions:
   - variable: pacote.version_new
     label: Digite a nova versão
     description: "Pacote que será instalado (será buscado no ftp-sankhya)"
+
+# Banco de Dados
 - variable: banco.tipo
   label: "Tipo do Banco de Dados"
   description: "Tipo do Banco Dados"
@@ -55,6 +58,8 @@ questions:
   type: password
   required: true
   group: "Configurando o Banco de Dados"
+
+# Memoria da Aplicação
 - variable: memoria.jivaw.jboss
   label: "Memória de inicialização do WildFly"
   description: "Memória de inicialização do WildFly"
@@ -78,6 +83,8 @@ questions:
   default: "1024"
   required: true
   group: "Configurando Memoria da Aplicação"
+
+# Outras Aplicações
 - variable: sas_delphi
   label: "Cliente possui Delphi?"
   description: "Caso seja marcado true o container do SAS não irá atualizar o parâmetro IPSERVACESS"
@@ -99,6 +106,8 @@ questions:
   default: false
   required: true
   group: "Outras Aplicações"
+
+# Load Balancer
 - variable: loadBalancer.jivaw.enabled
   label: "Definir hostname do Jivaw para o loadBalancer"
   description: "Definir hostname do Jivaw para o loadBalancer"
@@ -107,10 +116,11 @@ questions:
   required: true
   group: "Load Balancing"
   show_subquestion_if: true
-  subquetions:
+  subquestions:
   - variable: loadBalancer.jivaw.hostname
     label: Hostname jivaw
     description: Url de acesso
+
 - variable: loadBalancer.datasync.enabled
   label: "Definir hostname do Datasync para o loadBalancer"
   description: "Definir hostname do Datasync para o loadBalancer"
@@ -119,10 +129,12 @@ questions:
   required: true
   group: "Load Balancing"
   show_subquestion_if: true
-  subquetions:
+  show_if: "data_sync=true"
+  subquestions:
   - variable: loadBalancer.datasync.hostname
     label: Hostname datasync
     description: Url de acesso
+
 - variable: loadBalancer.sanesocial.enabled
   label: "Definir hostname do Sanesocial para o loadBalancer"
   description: "Definir hostname do Sanesocial para o loadBalancer"
@@ -130,8 +142,9 @@ questions:
   default: false
   required: true
   group: "Load Balancing"
-  show_subquestion_if: true
-  subquetions:
+  show_subquestion_if: "true"
+  show_if: "e_social=true"
+  subquestions:
   - variable: loadBalancer.sanesocial.hostname
     label: Hostname datasync
     description: Url de acesso
