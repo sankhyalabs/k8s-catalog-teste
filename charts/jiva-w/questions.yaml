@@ -1,0 +1,152 @@
+questions:
+# GRUPO CONFIGURAÇÃO DE PACOTE
+- variable: pacote.versao
+  label: "Escolha a versão"
+  description: "Pacote que será instalado (será buscado no ftp-sankhya)"
+  type: enum
+  options: 
+    - "jiva-w_3.29b91.pkg"
+    - "jiva-w_3.28b272.pkg"
+    - "jiva-w_3.27b347.pkg"
+    - "outros..."
+  required: true
+  group: "Pacote para instalação"
+  show_subquestion_if: "outros..."
+  subquetions:
+  - variable: pacote.version_new
+    label: Digite a nova versão
+    description: "Pacote que será instalado (será buscado no ftp-sankhya)"
+
+# GRUPO CONFIGURAÇÃO DE BANCO
+- variable: banco.tipo
+  label: "Tipo do Banco de Dados"
+  description: "Tipo do Banco Dados"
+  type: enum
+  default: "ORACLE"
+  required: true
+  group: "Configurando o Banco de Dados"
+  options:
+    - "ORACLE"
+    - "SQLSERVER"
+- variable: banco.ip
+  label: "IP do Banco de Dados"
+  description: "IP no qual está instalado o Banco de Dados"
+  type: string
+  required: true
+  group: "Configurando o Banco de Dados"
+- variable: banco.porta
+  label: "Porta do Banco de Dados"
+  description: "Porta Padrão Oracle: 1521 - Porta Padrão SqlServer: 1433"
+  type: string
+  required: true
+  group: "Configurando o Banco de Dados"
+- variable: banco.sid
+  label: "SID do Banco de Dados"
+  description: "Sid Padrão Oracle: ORCL - Sid Padrão SqlServer: MYSQLSERVER"
+  type: string
+  required: true
+  group: "Configurando o Banco de Dados"
+- variable: banco.usuario
+  label: "Usuário do Banco de Dados"
+  description: "Usuário do Banco de Dados"
+  type: string
+  required: true
+  group: "Configurando o Banco de Dados"
+- variable: banco.senha
+  label: "Senha do Banco de Dados"
+  description: "Senha do Banco de Dados"
+  type: password
+  required: true
+  group: "Configurando o Banco de Dados"
+
+  # GRUPO DE CONFIGURAÇÃO DE MEMORIA
+- variable: memoria.jivaw.jboss
+  label: "Memória de inicialização do WildFly"
+  description: "Memória de inicialização do WildFly"
+  type: enum
+  options:
+    - "-Xms512m -Xmx1150m"
+    - "-Xms512m -Xmx1304m"
+  required: true
+  group: "Configurando Memoria da Aplicação"
+- variable: memoria.jivaw.maximo
+  label: "Quantidade de memória máxima do container"
+  description: "Memória máxima que será alocada para o container."
+  type: string
+  default: "1536"
+  required: true
+  group: "Configurando Memoria da Aplicação"
+- variable: memoria.jivaw.media
+  label: "Quantidade de memória media do container"
+  description: "Memória media que será alocada para o container."
+  type: string
+  default: "1024"
+  required: true
+  group: "Configurando Memoria da Aplicação"
+
+# OUTRAS APLICAÇÕES
+- variable: sas_delphi
+  label: "Cliente possui Delphi?"
+  description: "Caso seja marcado true o container do SAS não irá atualizar o parâmetro IPSERVACESS"
+  type: boolean
+  default: false
+  required: true
+  group: "Outras Aplicações"
+- variable: data_sync
+  label: "Cliente possui Data Sync?"
+  description: Caso seja marcado true irá subir um container para o Data Sync
+  type: boolean
+  default: false
+  required: true
+  group: "Outras Aplicações"
+- variable: e_social
+  label: "Cliente possui eSocial?"
+  description: "Caso seja marcado true irá subir um container com o SanESocial"
+  type: boolean
+  default: false
+  required: true
+  group: "Outras Aplicações"
+
+# LOAD BALANCER
+- variable: loadBalancer.jivaw.enabled
+  label: "Definir hostname do Jivaw para o loadBalancer"
+  description: "Definir hostname do Jivaw para o loadBalancer"
+  type: boolean
+  default: false
+  required: true
+  group: "Load Balancing"
+  show_subquestion_if: true
+  subquetions:
+  - variable: loadBalancer.jivaw.hostname
+    label: Hostname jivaw
+    description: Url de acesso
+
+- variable: loadBalancer.datasync.enabled
+  label: "Definir hostname do Datasync para o loadBalancer"
+  description: "Definir hostname do Datasync para o loadBalancer"
+  type: boolean
+  default: false
+  required: true
+  group: "Load Balancing"
+  show_subquestion_if: true
+  subquetions:
+  - variable: loadBalancer.datasync.hostname
+    label: Hostname datasync
+    description: Url de acesso
+
+- variable: loadBalancer.sanesocial.enabled
+  label: "Definir hostname do Sanesocial para o loadBalancer"
+  description: "Definir hostname do Sanesocial para o loadBalancer"
+  type: boolean
+  default: false
+  required: true
+  group: "Load Balancing"
+  show_subquestion_if: true
+  subquetions:
+  - variable: loadBalancer.sanesocial.hostname
+    label: Hostname datasync
+    description: Url de acesso
+
+
+
+

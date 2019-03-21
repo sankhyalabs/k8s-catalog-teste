@@ -1,6 +1,0 @@
-name: Jiva-W
-description: |
-  Container jiva-w com o servidor de aplicação WILDFLY
-version: 2.0
-category: Collaboration
-maintainer: Highlander Dantas <highlander.dantas@sankhya.com.br>

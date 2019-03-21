@@ -1,0 +1,41 @@
+﻿apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    field.cattle.io/creatorId: u-4ktsd
+    field.cattle.io/ingressState: '{"":"highlander:","bGItaml2YXcvaGlnaGxhbmRlci9oaWdobGFuZGVyLWRhdGFzeW5jLmRldi5qaXZhLmNvbS5ici8vZGF0YXN5bmMuaHRtbC85OTgw":"","bGItaml2YXcvaGlnaGxhbmRlci9oaWdobGFuZGVyLXNhbmVzb2NpYWwuZGV2LmppdmEuY29tLmJyLy9pbmRleC5odG1sLzg3Nzg=":"","bGItaml2YXcvaGlnaGxhbmRlci9oaWdobGFuZGVyLmRldi5qaXZhLmNvbS5ici8vbWdlLzk5OTA=":""}'
+    field.cattle.io/publicEndpoints: '[{"addresses":["192.168.0.237"],"port":80,"protocol":"HTTP","serviceName":"highlander:jiva-w","ingressName":"highlander:lb-jivaw","hostname":"highlander.dev.jiva.com.br","path":"/mge","allNodes":true},{"addresses":["192.168.0.237"],"port":80,"protocol":"HTTP","serviceName":"highlander:datasync","ingressName":"highlander:lb-jivaw","hostname":"highlander-datasync.dev.jiva.com.br","path":"/datasync.html","allNodes":true},{"addresses":["192.168.0.237"],"port":80,"protocol":"HTTP","serviceName":"highlander:sanesocial","ingressName":"highlander:lb-jivaw","hostname":"highlander-sanesocial.dev.jiva.com.br","path":"/index.html","allNodes":true}]'
+  creationTimestamp: null
+  generation: 1
+  labels:
+    cattle.io/creator: norman
+  name: lb-jivaw
+  selfLink: /apis/extensions/v1beta1/namespaces/highlander/ingresses/lb-jivaw
+spec:
+  rules:
+  - host: highlander.dev.jiva.com.br
+    http:
+      paths:
+      - backend:
+          serviceName: jiva-w
+          servicePort: 9990
+        path: /mge
+  - host: highlander-datasync.dev.jiva.com.br
+    http:
+      paths:
+      - backend:
+          serviceName: datasync
+          servicePort: 9980
+        path: /datasync.html
+  - host: highlander-sanesocial.dev.jiva.com.br
+    http:
+      paths:
+      - backend:
+          serviceName: sanesocial
+          servicePort: 8778
+        path: /index.html
+  tls:
+  - hosts:
+    - lb-jivaw.highlander.xip.io
+status:
+  loadBalancer: {}

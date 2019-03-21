@@ -1,0 +1,42 @@
+## Pacote para Instalação
+pacote:
+  versao: "jiva-w_3.29b91.pkg"
+  version_new: ""
+
+## Dados do Banco de Dados
+banco:
+  tipo: "ORACLE"
+  ip: ""
+  porta: "1521"
+  sid: "ORCL"
+  usuario: "System"
+  senha: "tecsis"
+
+## Memoria Jivaw
+memoria:
+  jivaw:
+    jboss: "-Xms512m -Xmx1304m"
+    maximo: "1536"
+    media: "1024"
+
+## Possui SAs
+sas_delphi: false
+
+## Possui Datasync
+data_sync: false
+
+## Possui Esocial
+e_social: false
+
+## Configurações de url de acesso
+loadBalancer:
+  jivaw:
+    enabled: false
+    hostname: ""
+  datasync:
+    enabled: false
+    hostname: ""
+  sanesocial:
+    enabled: false
+    hostname: ""
+
