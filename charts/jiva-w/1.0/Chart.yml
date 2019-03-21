@@ -1,7 +1,7 @@
 description: Jiva-W
 icon: https://s3-sa-east-1.amazonaws.com/jiva-docker/rancher2/catalogIcon-jiva-w.svg
 home: https://www.jiva.com.br
-name: Jiva-w
+name: jiva-w
 version: 1.0
 maintainers:
 - email: highlander.dantas@sankhya.com.br
