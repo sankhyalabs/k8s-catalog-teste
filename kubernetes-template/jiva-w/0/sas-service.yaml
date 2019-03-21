@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    io.kompose.service: sas
+  name: sas
+  namespace: highlander
+spec:
+  ports:
+  - name: "10050"
+    port: 10050
+  selector:
+    io.kompose.service: sas
+status:
+  loadBalancer: {}
