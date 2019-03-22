@@ -12,7 +12,7 @@ questions:
   required: true
   group: "Pacote para instalação"
   show_subquestion_if: "outros..."
-  subquetions:
+  subquestions:
   - variable: pacote.version_new
     label: Digite a nova versão
     description: "Pacote que será instalado (será buscado no ftp-sankhya)"
