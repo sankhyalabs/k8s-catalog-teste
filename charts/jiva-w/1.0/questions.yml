@@ -15,6 +15,8 @@ questions:
   subquestions:
   - variable: pacote.version_new
     label: Digite a nova versão
+    type: string
+    required: true
     description: "Pacote que será instalado (será buscado no ftp-sankhya)"
 
 # Banco de Dados
@@ -120,6 +122,8 @@ questions:
   - variable: loadBalancer.jivaw.hostname
     label: Hostname jivaw
     description: Url de acesso
+    type: hostname
+    required: false
 
 - variable: loadBalancer.datasync.enabled
   label: "Definir hostname do Datasync para o loadBalancer"
@@ -134,6 +138,8 @@ questions:
   - variable: loadBalancer.datasync.hostname
     label: Hostname datasync
     description: Url de acesso
+    type: hostname
+    required: false
 
 - variable: loadBalancer.sanesocial.enabled
   label: "Definir hostname do Sanesocial para o loadBalancer"
@@ -148,6 +154,8 @@ questions:
   - variable: loadBalancer.sanesocial.hostname
     label: Hostname datasync
     description: Url de acesso
+    type: hostname
+    required: false
 
 
 
