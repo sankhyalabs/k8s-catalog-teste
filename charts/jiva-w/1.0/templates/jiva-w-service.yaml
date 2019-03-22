@@ -1,10 +1,10 @@
 ﻿apiVersion: v1
 kind: Service
 metadata:
-  creationTimestamp: null
   labels:
-    io.kompose.service: jiva-w
-  name: jiva-w
+    io.kompose.service: {{  .Values.imageRepository.sas.fullName   }}
+  name: {{  .Values.imageRepository.sas.fullName   }}
+  namespace: {{ .Release.Namespace | quote }}
 spec:
   ports:
   - name: "9990"
@@ -12,8 +12,7 @@ spec:
     protocol: TCP
     targetPort: 8080
   selector:
-    io.kompose.service: jiva-w
-  sessionAffinity: None
+    io.kompose.service: {{  .Values.imageRepository.sas.fullName   }}
   type: ClusterIP
 status:
   loadBalancer: {}
