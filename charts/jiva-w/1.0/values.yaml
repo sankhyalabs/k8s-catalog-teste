@@ -1,7 +1,32 @@
+# Imagens Hub e Versões
+imageRepository:
+  jivaw:
+    fullName: "jiva-w"
+    image: "highlanderdantas/snk-jiva-w"
+    imageTag: "v1.4"
+    volume: "sanesocial-claim0"
+  sas:
+    fullName: "sas" 
+    image: "highlanderdantas/sas"
+    imageTag: "v1.4"
+    volume: "sanesocial-claim0"
+  esocial:
+    fullName: "esocial"
+    image: "highlanderdantas/esocial"
+    imageTag: "v1.4"
+    volume: "sanesocial-claim0"
+  datasync: 
+    fullName: "datasync"
+    image: "highlanderdantas/datasync"
+    imageTag: v1.4
+    volume: "sanesocial-claim0"
+
+annotations: {}
+
 ## Pacote para Instalação
 pacote:
   versao: "jiva-w_3.29b91.pkg"
-  version_new: ""
+  versionNew: ""
 
 ## Dados do Banco de Dados
 banco:
@@ -20,13 +45,16 @@ memoria:
     media: "1024"
 
 ## Possui SAs
-sas_delphi: false
+sasdelphi:
+  enabled: false
 
 ## Possui Datasync
-data_sync: false
+datasync:
+  enabled: false
 
 ## Possui Esocial
-e_social: false
+esocial:
+  enabled: false
 
 ## Configurações de url de acesso
 loadBalancer:

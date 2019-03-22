@@ -1,0 +1,132 @@
+﻿apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: {{  .Values.imageRepository.jivaw.fullName   }}
+  namespace: {{ .Release.Namespace | quote }}
+  annotations:
+    {{- range $key, $value := .Values.annotations }}
+      {{ $key }}: {{ $value }}
+    {{- end }}
+  generation: 1
+  labels:
+    release: {{ .Release.Name }}
+    io.kompose.service: {{  .Values.imageRepository.jivaw.fullName   }}
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      io.kompose.service: {{  .Values.imageRepository.jivaw.fullName   }}
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        io.kompose.service: {{  .Values.imageRepository.jivaw.fullName   }}
+    spec:
+      containers:
+      - args:
+        - sudo chown -R mgeweb:mgeweb /home/mgeweb/sankhyaw-dpm/ /home/mgeweb/SankhyaW/Anexos
+          /home/mgeweb/repositorio /home/mgeweb/pacotes-sannfe/ && /home/mgeweb/DPM/scripts/./wildfly.sh
+          ; java -jar /home/mgeweb/DPM/docker-package-manager.jar ; /home/mgeweb/DPM/scripts/./sannfe.sh;
+          sudo chown -R mgeweb:mgeweb /home/mgeweb/SanNFe /home/mgeweb/wildfly_producao/standalone/log
+          && /home/mgeweb/DPM/scripts/./visualvm.sh && sleep 10  && sed -i 's/<min-pool-size>100</<min-pool-size>10</g'
+          /home/mgeweb/wildfly_producao/standalone/deployments/mge-ds.xml && sed -i
+          's/<max-pool-size>100</<max-pool-size>50</g' /home/mgeweb/wildfly_producao/standalone/deployments/mge-ds.xml
+          && sleep 15; nohup /home/mgeweb/DPM/scripts/./sentry 2>&1 </dev/null & sleep
+          5 && echo 'y' && sleep 30 ; /home/mgeweb/wildfly_producao/bin/./standalone.sh
+          -Djape.lazy.init=true -Djape.lob.fields.as.lazy=true -Djape.ignore.ligacao.inconsistente=true
+        command:
+        - /bin/sh
+        - -c
+        env:
+        - name: APP
+          value: {{  .Values.imageRepository.jivaw.fullName   }}
+        - name: CLIENTE
+          value: {{ .Release.Namespace | quote }}
+        - name: IP_BD_JIVAW
+          value: {{ .Values.banco.ip }}
+        - name: MEMORIA_JBOSS
+          value: {{ .Values.memoria.jivaw.jboss }}
+        {{-  if .Values.pacote.versao }}
+        - name: PACOTE_JIVAW
+          value: {{ .Values.pacote.versao }}
+        {{- else }}
+        - name: PACOTE_JIVAW
+          value: {{ .Values.pacote.versionNew }}
+        {{- end }}
+        - name: PATH_LOG
+          value: /home/mgeweb/wildfly_producao/standalone/log/server.log
+        - name: PORTA_BD_JIVAW
+          value: {{ .Values.banco.porta }}
+        - name: SENHA_BD_JIVAW
+          value: {{ .Values.banco.senha }}
+        - name: SID_BD_JIVAW
+          value: {{ .Values.banco.sid }}
+        - name: TIPO_BD
+          value: {{ .Values.banco.tipo }}
+        - name: TIPO_SERVIDOR
+          value: WILDFLY
+        - name: USUARIO_BD_JIVAW
+          value: {{ .Values.banco.usuario }}
+        image: {{  .Values.imageRepository.jivaw.image }}:{{  .Values.imageRepository.jivaw.imageTag }}
+        imagePullPolicy: Always
+        name: {{  .Values.imageRepository.jivaw.fullName   }}
+        livenessProbe:
+          failureThreshold: 3
+          initialDelaySeconds: 100
+          periodSeconds: 60
+          successThreshold: 1
+          tcpSocket:
+            port: 8080
+          timeoutSeconds: 60
+        ports:
+        - containerPort: 8080
+          hostPort: 9990
+          protocol: TCP
+        readinessProbe:
+          failureThreshold: 3
+          initialDelaySeconds: 100
+          periodSeconds: 60
+          successThreshold: 1
+          tcpSocket:
+            port: 8080
+          timeoutSeconds: 60
+        resources:
+          limits:
+            memory: {{ .Values.memoria.maximo }}Mi
+          requests:
+            memory: {{ .Values.memoria.media }}Mi
+        securityContext:
+          allowPrivilegeEscalation: true
+          capabilities: {}
+          privileged: true
+        volumeMounts:
+        - mountPath: /home/mgeweb/repositorio
+          name: {{ .Values.imageRepository.jivaw.volume }}
+          subPath: pacotes/repositorio/
+        - mountPath: /home/mgeweb/wildfly_producao/standalone/log
+          name: {{ .Values.imageRepository.jivaw.volume }}
+          subPath: highlander/logs/
+        - mountPath: /home/mgeweb/SanNFe
+          name: {{ .Values.imageRepository.jivaw.volume }}
+          subPath: highlander/SanNFe/
+        - mountPath: /home/mgeweb/SankhyaW/Anexos
+          name: {{ .Values.imageRepository.jivaw.volume }}
+          subPath: highlander/Anexos/
+        - mountPath: /home/mgeweb/pacotes-sannfe/
+          name: {{ .Values.imageRepository.jivaw.volume }}
+          subPath: highlander/pacotes/sannfe/
+        - mountPath: /home/mgeweb/sankhyaw-dpm/pkgs
+          name: {{ .Values.imageRepository.jivaw.volume }}
+          subPath: highlander/jiva-w/
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      securityContext: {}
+      terminationGracePeriodSeconds: 0
+      volumes:
+      - name: {{ .Values.imageRepository.jivaw.volume }}
+        persistentVolumeClaim:
+          claimName: {{ .Values.imageRepository.jivaw.volume }}
+status: {}

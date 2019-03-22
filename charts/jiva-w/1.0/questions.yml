@@ -13,7 +13,7 @@ questions:
   group: "Pacote para instalação"
   show_subquestion_if: "outros..."
   subquestions:
-  - variable: pacote.version_new
+  - variable: pacote.versionNew
     label: Digite a nova versão
     type: string
     required: true
@@ -87,21 +87,21 @@ questions:
   group: "Configurando Memoria da Aplicação"
 
 # Outras Aplicações
-- variable: sas_delphi
+- variable: sasdelphi.enabled
   label: "Cliente possui Delphi?"
   description: "Caso seja marcado true o container do SAS não irá atualizar o parâmetro IPSERVACESS"
   type: boolean
   default: false
   required: true
   group: "Outras Aplicações"
-- variable: data_sync
+- variable: datasync.enabled
   label: "Cliente possui Data Sync?"
   description: Caso seja marcado true irá subir um container para o Data Sync
   type: boolean
   default: false
   required: true
   group: "Outras Aplicações"
-- variable: e_social
+- variable: esocial.enabled
   label: "Cliente possui eSocial?"
   description: "Caso seja marcado true irá subir um container com o SanESocial"
   type: boolean
@@ -133,7 +133,7 @@ questions:
   required: true
   group: "Load Balancing"
   show_subquestion_if: true
-  show_if: "data_sync=true"
+  show_if: "datasync.enabled=true"
   subquestions:
   - variable: loadBalancer.datasync.hostname
     label: Hostname datasync
@@ -149,7 +149,7 @@ questions:
   required: true
   group: "Load Balancing"
   show_subquestion_if: "true"
-  show_if: "e_social=true"
+  show_if: "esocial.enabled=true"
   subquestions:
   - variable: loadBalancer.sanesocial.hostname
     label: Hostname datasync

@@ -1,0 +1,33 @@
+﻿apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  generation: 1
+  name: ingress
+spec:
+  rules:
+  - host: highlander.dev.jiva.com.br
+    http:
+      paths:
+      - backend:
+          serviceName: jiva-w
+          servicePort: 9990
+        path: /mge
+  - host: highlander-datasync.dev.jiva.com.br
+    http:
+      paths:
+      - backend:
+          serviceName: datasync
+          servicePort: 9980
+        path: /datasync.html
+  - host: highlander-sanesocial.dev.jiva.com.br
+    http:
+      paths:
+      - backend:
+          serviceName: sanesocial
+          servicePort: 8778
+        path: /index.html
+  tls:
+  - hosts:
+    - lb-jivaw.highlander.xip.io
+status:
+  loadBalancer: {}
