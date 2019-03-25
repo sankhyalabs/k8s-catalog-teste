@@ -18,5 +18,5 @@ spec:
     requests:
       storage: 200Mi
   volumeMode: Filesystem
-  volumeName: {{ .Values.volume.name }}
+  volumeName: {{ .Values.imageRepository.volume }}
 status: {}
