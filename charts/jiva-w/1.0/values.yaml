@@ -58,13 +58,11 @@ esocial:
 
 ## Configurações de url de acesso
 loadBalancer:
+  dns: .dev.jiva.com.br
   jivaw:
     enabled: false
-    hostname: ""
   datasync:
     enabled: false
-    hostname: ""
-  sanesocial:
+  esocial:
     enabled: false
-    hostname: ""
 

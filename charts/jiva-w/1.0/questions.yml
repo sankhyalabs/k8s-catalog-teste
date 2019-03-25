@@ -117,13 +117,6 @@ questions:
   default: false
   required: true
   group: "Load Balancing"
-  show_subquestion_if: true
-  subquestions:
-  - variable: loadBalancer.jivaw.hostname
-    label: Hostname jivaw
-    description: Url de acesso
-    type: hostname
-    required: false
 
 - variable: loadBalancer.datasync.enabled
   label: "Definir hostname do Datasync para o loadBalancer"
@@ -132,30 +125,16 @@ questions:
   default: false
   required: true
   group: "Load Balancing"
-  show_subquestion_if: true
   show_if: "datasync.enabled=true"
-  subquestions:
-  - variable: loadBalancer.datasync.hostname
-    label: Hostname datasync
-    description: Url de acesso
-    type: hostname
-    required: false
 
-- variable: loadBalancer.sanesocial.enabled
+- variable: loadBalancer.esocial.enabled
   label: "Definir hostname do Sanesocial para o loadBalancer"
   description: "Definir hostname do Sanesocial para o loadBalancer"
   type: boolean
   default: false
   required: true
   group: "Load Balancing"
-  show_subquestion_if: "true"
   show_if: "esocial.enabled=true"
-  subquestions:
-  - variable: loadBalancer.sanesocial.hostname
-    label: Hostname datasync
-    description: Url de acesso
-    type: hostname
-    required: false
 
 
 

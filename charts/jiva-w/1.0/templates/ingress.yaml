@@ -1,33 +1,42 @@
-﻿apiVersion: extensions/v1beta1
+﻿
+{{- if ( or .Values.jivaw.enabled .Values.esocial.enabled  .Values.datasync.enabled ) }}
+apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   generation: 1
   name: ingress
 spec:
   rules:
-  - host: highlander.dev.jiva.com.br
+  {{- if .Values.jivaw.enabled }}
+  - host: {{ .Release.Namespace }}-jivaw{{ .Values.loadBalancer.dns }}
     http:
       paths:
       - backend:
-          serviceName: jiva-w
+          serviceName: {{  .Values.imageRepository.jivaw.fullName }}
           servicePort: 9990
         path: /mge
-  - host: highlander-datasync.dev.jiva.com.br
+  {{- end }}
+  {{- if .Values.datasync.enabled }}
+  - host: {{ .Release.Namespace }}-datasync{{ .Values.loadBalancer.dns }}
     http:
       paths:
       - backend:
-          serviceName: datasync
+          serviceName: {{  .Values.imageRepository.datasync.fullName }}
           servicePort: 9980
         path: /datasync.html
-  - host: highlander-sanesocial.dev.jiva.com.br
+  {{- end }}
+  {{- if .Values.esocial.enabled }}
+  - host: {{ .Release.Namespace }}-esocial{{ .Values.loadBalancer.dns }}
     http:
       paths:
       - backend:
-          serviceName: sanesocial
+          serviceName: {{  .Values.imageRepository.esocial.fullName }}
           servicePort: 8778
         path: /index.html
+    {{- end }}
   tls:
   - hosts:
     - lb-jivaw.highlander.xip.io
 status:
   loadBalancer: {}
+{{- end }}
