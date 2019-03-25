@@ -1,7 +1,7 @@
 ﻿apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-   name: {{ .Release.Namespace | quote }}-volume
+  name: {{ .Release.Namespace | quote }}-volume
   namespace: {{ .Release.Namespace | quote }}
   annotations:
     {{- range $key, $value := .Values.annotations }}

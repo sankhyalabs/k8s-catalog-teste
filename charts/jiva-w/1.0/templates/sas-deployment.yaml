@@ -65,7 +65,6 @@ spec:
         resources: {}
         securityContext:
           allowPrivilegeEscalation: true
-          capabilities: {}
           privileged: true
         volumeMounts:
         - mountPath: /home/mgeweb/pacotes-sas/
