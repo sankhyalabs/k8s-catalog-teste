@@ -26,7 +26,7 @@ spec:
     spec:
       containers:
       - name: {{ .Values.imageRepository.sas.fullName }}
-        image: "{{  .Values.imageRepository.sas.image }}:{{  .Values.imageRepository.sas.imageTag }}"
+        image: {{  .Values.imageRepository.sas.image }}:{{  .Values.imageRepository.sas.imageTag }}
         imagePullPolicy: Always
         command: ["/bin/sh", "-c"]
         args:
@@ -64,10 +64,10 @@ spec:
           timeoutSeconds: 6
         volumeMounts:
         - mountPath: /home/mgeweb/pacotes-sas/
-          name: "{{ .Release.Namespace | quote }}-volume"
+          name: {{ .Release.Namespace | quote }}-volume
           subPath: pacotes/sas
         - mountPath: /opt/SAS/licenca
-          name: "{{ .Release.Namespace | quote }}-volume"
+          name: {{ .Release.Namespace | quote }}-volume
           subPath: highlander/SAS/
       dnsPolicy: ClusterFirst
       hostNetwork: true
@@ -75,7 +75,7 @@ spec:
       securityContext: {}
       terminationGracePeriodSeconds: 0
       volumes:
-      - name: "{{ .Release.Namespace | quote }}-volume"
+      - name: {{ .Release.Namespace | quote }}-volume
         persistentVolumeClaim:
-          claimName: "{{ .Release.Namespace | quote }}-volume"
+          claimName: {{ .Release.Namespace | quote }}-volume
 status: {}
