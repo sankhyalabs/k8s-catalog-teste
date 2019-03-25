@@ -1,0 +1,22 @@
+﻿apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+   name: {{ .Release.Namespace | quote }}-volume
+  namespace: {{ .Release.Namespace | quote }}
+  annotations:
+    {{- range $key, $value := .Values.annotations }}
+      {{ $key }}: {{ $value }}
+    {{- end }}
+  finalizers:
+  - kubernetes.io/pvc-protection
+  labels:
+    io.kompose.service: {{ .Release.Namespace | quote }}-volume
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 200Mi
+  volumeMode: Filesystem
+  volumeName: {{ .Values.volume.name }}
+status: {}

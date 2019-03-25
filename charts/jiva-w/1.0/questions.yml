@@ -85,10 +85,10 @@ questions:
   default: "1024"
   required: true
   group: "Configurando Memoria da Aplicação"
-- variable: volume.name
-  label: "Escolha um volume"
-  description: "Escolha um volume para o container"
-  type: storageclass
+- variable: imageRepository.volume
+  label: "Nome do volume do cluster"
+  description: "Nome do volume do cluster"
+  type: string
   default: ""
   required: true
   group: "Configurando Memoria da Aplicação"

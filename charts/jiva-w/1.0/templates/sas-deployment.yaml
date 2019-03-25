@@ -69,10 +69,10 @@ spec:
           privileged: true
         volumeMounts:
         - mountPath: /home/mgeweb/pacotes-sas/
-          name: {{ .Values.imageRepository.sas.volume }}
+          name: {{ .Release.Namespace | quote }}-volume
           subPath: pacotes/sas
         - mountPath: /opt/SAS/licenca
-          name: {{ .Values.imageRepository.sas.volume }}
+          name: {{ .Release.Namespace | quote }}-volume
           subPath: highlander/SAS/
       dnsPolicy: ClusterFirst
       hostNetwork: true
@@ -80,7 +80,7 @@ spec:
       securityContext: {}
       terminationGracePeriodSeconds: 0
       volumes:
-      - name: {{ .Values.imageRepository.sas.volume }}
+      - name: {{ .Release.Namespace | quote }}-volume
         persistentVolumeClaim:
-          claimName: {{ .Values.imageRepository.sas.volume }}
+          claimName: {{ .Release.Namespace | quote }}-volume
 status: {}

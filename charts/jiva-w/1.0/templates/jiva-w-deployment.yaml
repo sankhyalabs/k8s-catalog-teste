@@ -104,29 +104,29 @@ spec:
           privileged: true
         volumeMounts:
         - mountPath: /home/mgeweb/repositorio
-          name: {{ .Values.imageRepository.jivaw.volume }}
+          name: {{ .Release.Namespace | quote }}-volume
           subPath: pacotes/repositorio/
         - mountPath: /home/mgeweb/wildfly_producao/standalone/log
-          name: {{ .Values.imageRepository.jivaw.volume }}
+          name: {{ .Release.Namespace | quote }}-volume
           subPath: highlander/logs/
         - mountPath: /home/mgeweb/SanNFe
-          name: {{ .Values.imageRepository.jivaw.volume }}
+          name: {{ .Release.Namespace | quote }}-volume
           subPath: highlander/SanNFe/
         - mountPath: /home/mgeweb/SankhyaW/Anexos
-          name: {{ .Values.imageRepository.jivaw.volume }}
+          name: {{ .Release.Namespace | quote }}-volume
           subPath: highlander/Anexos/
         - mountPath: /home/mgeweb/pacotes-sannfe/
-          name: {{ .Values.imageRepository.jivaw.volume }}
+          name: {{ .Release.Namespace | quote }}-volume
           subPath: highlander/pacotes/sannfe/
         - mountPath: /home/mgeweb/sankhyaw-dpm/pkgs
-          name: {{ .Values.imageRepository.jivaw.volume }}
+          name: {{ .Release.Namespace | quote }}-volume
           subPath: highlander/jiva-w/
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       securityContext: {}
       terminationGracePeriodSeconds: 0
       volumes:
-      - name: {{ .Values.imageRepository.jivaw.volume }}
+      - name: {{ .Release.Namespace | quote }}-volume
         persistentVolumeClaim:
-          claimName: {{ .Values.imageRepository.jivaw.volume }}
+          claimName: {{ .Release.Namespace | quote }}-volume
 status: {}

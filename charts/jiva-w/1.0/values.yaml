@@ -1,25 +1,22 @@
 # Imagens Hub e Versões
 imageRepository:
+  volume: "sanesocial-claim0"
   jivaw:
     fullName: "jiva-w"
     image: "highlanderdantas/snk-jiva-w"
     imageTag: "v1.4"
-    volume: "sanesocial-claim0"
   sas:
     fullName: "sas" 
     image: "highlanderdantas/sas"
     imageTag: "v1.4"
-    volume: "sanesocial-claim0"
   esocial:
     fullName: "esocial"
     image: "highlanderdantas/esocial"
     imageTag: "v1.4"
-    volume: "sanesocial-claim0"
   datasync: 
     fullName: "datasync"
     image: "highlanderdantas/datasync"
     imageTag: v1.4
-    volume: "sanesocial-claim0"
 
 annotations: {}
 
@@ -44,8 +41,6 @@ memoria:
     maximo: "1536"
     media: "1024"
 
-volume:
-  name: ""
 ## Possui SAs
 sasdelphi:
   enabled: false

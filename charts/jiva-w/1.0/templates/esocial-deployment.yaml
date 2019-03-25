@@ -52,16 +52,16 @@ spec:
           privileged: true
         volumeMounts:
         - mountPath: /home/mgeweb/sanesocial/conf
-          name: {{  .Values.imageRepository.esocial.volume   }}
+          name: {{ .Release.Namespace | quote }}-volume
           subPath: sanesocial/conf
         - mountPath: /home/mgeweb/sanesocial/certificados
-          name: {{  .Values.imageRepository.esocial.volume   }}
+          name: {{ .Release.Namespace | quote }}-volume
           subPath: sanesocial/certificados
         - mountPath: /home/mgeweb/sanesocial/log
-          name: {{  .Values.imageRepository.esocial.volume   }}
+          name: {{ .Release.Namespace | quote }}-volume
           subPath: sanesocial/log
         - mountPath: /home/mgeweb/sanesocial/properties
-          name: {{  .Values.imageRepository.esocial.volume   }}
+          name: {{ .Release.Namespace | quote }}-volume
           subPath: sanesocial/properties
       dnsPolicy: ClusterFirst
       hostNetwork: true
@@ -69,8 +69,8 @@ spec:
       securityContext: {}
       terminationGracePeriodSeconds: 0
       volumes:
-      - name: {{  .Values.imageRepository.esocial.volume   }}
+      - name: {{ .Release.Namespace | quote }}-volume
         persistentVolumeClaim:
-          claimName: {{  .Values.imageRepository.esocial.volume   }}
+          claimName: {{ .Release.Namespace | quote }}-volume
 status: {}
 {{- end }}
