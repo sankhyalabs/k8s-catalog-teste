@@ -27,7 +27,7 @@ spec:
     spec:
       containers:
       - name: {{  .Values.imageRepository.datasync.fullName   }}
-        image: {{ .Values.imageRepository.datasync.image }}:{{ .Values.imageRepository.datasync.imageTag }}
+        image: "{{ .Values.imageRepository.datasync.image }}:{{ .Values.imageRepository.datasync.imageTag }}"
         imagePullPolicy: Always
         command: ["/bin/sh", "-c"]
         args:
@@ -39,34 +39,34 @@ spec:
           privileged: true
         volumeMounts:
         - mountPath: /home/mgeweb/DataSync/conf
-          name: {{ .Release.Namespace | quote }}-volume
+          name: "{{ .Release.Namespace | quote }}-volume"
           subPath: highlander/datasync/conf
         - mountPath: /home/mgeweb/DataSync/email
-          name: {{ .Release.Namespace | quote }}-volume
+          name: "{{ .Release.Namespace | quote }}-volume"
           subPath: highlander/datasync/email
         - mountPath: /home/mgeweb/DataSync/exported
-          name: {{ .Release.Namespace | quote }}-volume
+          name: "{{ .Release.Namespace | quote }}-volume"
           subPath: highlander/datasync/exported
         - mountPath: /home/mgeweb/DataSync/filetransfer_home
-          name: {{ .Release.Namespace | quote }}-volume
+          name: "{{ .Release.Namespace | quote }}-volume"
           subPath: highlander/datasync/filetransfer_home
         - mountPath: /home/mgeweb/DataSync/log
-          name: {{ .Release.Namespace | quote }}-volume
+          name: "{{ .Release.Namespace | quote }}-volume"
           subPath: highlander/datasync/log
         - mountPath: /home/mgeweb/DataSync/processed
-          name: {{ .Release.Namespace | quote }}-volume
+          name: "{{ .Release.Namespace | quote }}-volume"
           subPath: highlander/datasync/processed
         - mountPath: /home/mgeweb/DataSync/sync
-          name: {{ .Release.Namespace | quote }}-volume
+          name: "{{ .Release.Namespace | quote }}-volume"
           subPath: highlander/datasync/sync
         - mountPath: /home/mgeweb/DataSync/tracking
-          name: {{ .Release.Namespace | quote }}-volume
+          name: "{{ .Release.Namespace | quote }}-volume"
           subPath: highlander/datasync/tracking
         - mountPath: /home/mgeweb/DataSync/work
-          name: {{ .Release.Namespace | quote }}-volume
+          name: "{{ .Release.Namespace | quote }}-volume"
           subPath: highlander/datasync/work
         - mountPath: /home/mgeweb/pacotes-datasync/
-          name: {{ .Release.Namespace | quote }}-volume
+          name: "{{ .Release.Namespace | quote }}-volume"
           subPath: highlander/datasync/pacotes/datasync
       dnsPolicy: ClusterFirst
       hostNetwork: true
@@ -74,8 +74,8 @@ spec:
       securityContext: {}
       terminationGracePeriodSeconds: 0
       volumes:
-      - name: {{ .Release.Namespace | quote }}-volume
+      - name: "{{ .Release.Namespace | quote }}-volume"
         persistentVolumeClaim:
-          claimName: {{ .Release.Namespace | quote }}-volume
+          claimName: "{{ .Release.Namespace | quote }}-volume"
 status: {}
 {{- end }}

@@ -70,7 +70,7 @@ spec:
           value: WILDFLY
         - name: USUARIO_BD_JIVAW
           value: {{ .Values.banco.usuario }}
-        image: {{  .Values.imageRepository.jivaw.image }}:{{  .Values.imageRepository.jivaw.imageTag }}
+        image: "{{  .Values.imageRepository.jivaw.image }}:{{  .Values.imageRepository.jivaw.imageTag }}"
         imagePullPolicy: Always
         name: {{  .Values.imageRepository.jivaw.fullName   }}
         livenessProbe:
@@ -95,38 +95,38 @@ spec:
           timeoutSeconds: 60
         resources:
           limits:
-            memory: "{{ .Values.memoria.maximo }}Mi"
+            memory: "{{ .Values.memoria.jivaw.maximo }}Mi"
           requests:
-            memory: "{{ .Values.memoria.media }}Mi"
+            memory: "{{ .Values.memoria.jivaw.media }}Mi"
         securityContext:
           allowPrivilegeEscalation: true
           capabilities: {}
           privileged: true
         volumeMounts:
         - mountPath: /home/mgeweb/repositorio
-          name: {{ .Release.Namespace | quote }}-volume
+          name: "{{ .Release.Namespace | quote }}-volume"
           subPath: pacotes/repositorio/
         - mountPath: /home/mgeweb/wildfly_producao/standalone/log
-          name: {{ .Release.Namespace | quote }}-volume
+          name: "{{ .Release.Namespace | quote }}-volume"
           subPath: highlander/logs/
         - mountPath: /home/mgeweb/SanNFe
-          name: {{ .Release.Namespace | quote }}-volume
+          name: "{{ .Release.Namespace | quote }}-volume"
           subPath: highlander/SanNFe/
         - mountPath: /home/mgeweb/SankhyaW/Anexos
-          name: {{ .Release.Namespace | quote }}-volume
+          name: "{{ .Release.Namespace | quote }}-volume"
           subPath: highlander/Anexos/
         - mountPath: /home/mgeweb/pacotes-sannfe/
-          name: {{ .Release.Namespace | quote }}-volume
+          name: "{{ .Release.Namespace | quote }}-volume"
           subPath: highlander/pacotes/sannfe/
         - mountPath: /home/mgeweb/sankhyaw-dpm/pkgs
-          name: {{ .Release.Namespace | quote }}-volume
+          name: "{{ .Release.Namespace | quote }}-volume"
           subPath: highlander/jiva-w/
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       securityContext: {}
       terminationGracePeriodSeconds: 0
       volumes:
-      - name: {{ .Release.Namespace | quote }}-volume
+      - name: "{{ .Release.Namespace | quote }}-volume"
         persistentVolumeClaim:
-          claimName: {{ .Release.Namespace | quote }}-volume
+          claimName: "{{ .Release.Namespace | quote }}-volume"
 status: {}
