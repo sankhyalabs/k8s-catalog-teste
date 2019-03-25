@@ -61,7 +61,7 @@ questions:
   required: true
   group: "Configurando o Banco de Dados"
 
-# Memoria da Aplicação
+# Memoria da Aplicação e Volume
 - variable: memoria.jivaw.jboss
   label: "Memória de inicialização do WildFly"
   description: "Memória de inicialização do WildFly"
@@ -83,6 +83,13 @@ questions:
   description: "Memória media que será alocada para o container."
   type: string
   default: "1024"
+  required: true
+  group: "Configurando Memoria da Aplicação"
+- variable: volume.name
+  label: "Escolha um volume"
+  description: "Escolha um volume para o container"
+  type: storageclass
+  default: ""
   required: true
   group: "Configurando Memoria da Aplicação"
 
