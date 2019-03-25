@@ -44,6 +44,8 @@ memoria:
     maximo: "1536"
     media: "1024"
 
+volume:
+  name: ""
 ## Possui SAs
 sasdelphi:
   enabled: false
