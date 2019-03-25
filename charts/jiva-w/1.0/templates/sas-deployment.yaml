@@ -62,10 +62,6 @@ spec:
           tcpSocket:
             port: 10050
           timeoutSeconds: 6
-        resources: {}
-        securityContext:
-          allowPrivilegeEscalation: true
-          privileged: true
         volumeMounts:
         - mountPath: /home/mgeweb/pacotes-sas/
           name: {{ .Release.Namespace | quote }}-volume
