@@ -95,9 +95,9 @@ spec:
           timeoutSeconds: 60
         resources:
           limits:
-            memory: {{ .Values.memoria.maximo }}Mi
+            memory: "{{ .Values.memoria.maximo }}Mi"
           requests:
-            memory: {{ .Values.memoria.media }}Mi
+            memory: "{{ .Values.memoria.media }}Mi"
         securityContext:
           allowPrivilegeEscalation: true
           capabilities: {}
