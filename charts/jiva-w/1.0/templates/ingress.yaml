@@ -1,5 +1,5 @@
 ﻿
-{{- if ( or .Values.loadBalancer.jivaw.enabled .Values.loadBalancer.esocial.enabled  .Values.loadBalancer.datasync.enabled ) }}
+{{- if ( or .Values.jivaw.enabled .Values.esocial.enabled  .Values.datasync.enabled ) }}
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
@@ -7,7 +7,7 @@ metadata:
   name: ingress
 spec:
   rules:
-  {{- if .Values.loadBalancer.jivaw.enabled }}
+  {{- if .Values.jivaw.enabled }}
   - host: {{ .Release.Namespace }}-jivaw{{ .Values.loadBalancer.dns }}
     http:
       paths:
@@ -16,7 +16,7 @@ spec:
           servicePort: 9990
         path: /mge
   {{- end }}
-  {{- if .Values.loadBalancer.datasync.enabled }}
+  {{- if .Values.datasync.enabled }}
   - host: {{ .Release.Namespace }}-datasync{{ .Values.loadBalancer.dns }}
     http:
       paths:
@@ -25,7 +25,7 @@ spec:
           servicePort: 9980
         path: /datasync.html
   {{- end }}
-  {{- if .Values.loadBalancer.esocial.enabled }}
+  {{- if .Values.esocial.enabled }}
   - host: {{ .Release.Namespace }}-esocial{{ .Values.loadBalancer.dns }}
     http:
       paths:

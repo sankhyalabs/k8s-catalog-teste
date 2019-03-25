@@ -45,6 +45,10 @@ memoria:
 sasdelphi:
   enabled: false
 
+## Possui Jivaw
+jivaw:
+  enabled: true
+
 ## Possui Datasync
 datasync:
   enabled: false
