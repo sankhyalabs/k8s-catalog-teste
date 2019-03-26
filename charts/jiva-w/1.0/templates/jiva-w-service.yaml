@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ template "jiva-w.server.fullname" . }}
+  name: jiva-w
 spec:
   ports:
   - name: "9990"

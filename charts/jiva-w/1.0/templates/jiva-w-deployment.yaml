@@ -1,7 +1,7 @@
 apiVersion: apps/v1beta2
 kind: Deployment
 metadata:
-  name: {{ template "jiva-w.server.fullname" . }}
+  name: jiva-w
   generation: 1
 spec:
   progressDeadlineSeconds: 600
@@ -58,7 +58,7 @@ spec:
           value: {{ .Values.banco.usuario }}
         image: {{  .Values.imageRepository.jivaw.image }}:{{  .Values.imageRepository.jivaw.imageTag }}
         imagePullPolicy: Always
-        name: {{ template "jiva-w.server.fullname" . }}
+        name: jiva-w
         livenessProbe:
           failureThreshold: 3
           initialDelaySeconds: 100
