@@ -1,4 +1,4 @@
-﻿{{- if .Values.esocial.enabled }}
+{{- if .Values.esocial.enabled }}
 apiVersion: apps/v1beta2
 kind: Deployment
 metadata:
