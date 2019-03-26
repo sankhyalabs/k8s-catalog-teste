@@ -2,7 +2,6 @@ apiVersion: apps/v1beta2
 kind: Deployment
 metadata:
   name: {{  .Values.imageRepository.sas.fullName   }}
-  namespace: {{ .Release.Namespace | quote }}
   generation: 1
   annotations:
     {{- range $key, $value := .Values.annotations }}
@@ -64,10 +63,10 @@ spec:
           timeoutSeconds: 6
         volumeMounts:
         - mountPath: /home/mgeweb/pacotes-sas/
-          name: {{ .Release.Namespace | quote }}-volume
+          name: {{ .Values.imageRepository.volume }}
           subPath: pacotes/sas
         - mountPath: /opt/SAS/licenca
-          name: {{ .Release.Namespace | quote }}-volume
+          name: {{ .Values.imageRepository.volume }}
           subPath: highlander/SAS/
       dnsPolicy: ClusterFirst
       hostNetwork: true
@@ -75,7 +74,7 @@ spec:
       securityContext: {}
       terminationGracePeriodSeconds: 0
       volumes:
-      - name: {{ .Release.Namespace | quote }}-volume
+      - name: {{ .Values.imageRepository.volume }}
         persistentVolumeClaim:
-          claimName: {{ .Release.Namespace | quote }}-volume
+          claimName: {{ .Values.imageRepository.volume }}
 status: {}

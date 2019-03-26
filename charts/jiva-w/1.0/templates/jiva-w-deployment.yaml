@@ -2,7 +2,6 @@
 kind: Deployment
 metadata:
   name: {{  .Values.imageRepository.jivaw.fullName   }}
-  namespace: {{ .Release.Namespace  }}
   annotations:
     {{- range $key, $value := .Values.annotations }}
       {{ $key }}: {{ $value }}
@@ -44,7 +43,7 @@ spec:
         - name: APP
           value: {{  .Values.imageRepository.jivaw.fullName   }}
         - name: CLIENTE
-          value: {{ .Release.Namespace  }}
+          value: {{ template "jiva-w.server.fullname" .  }}
         - name: IP_BD_JIVAW
           value: {{ .Values.banco.ip }}
         - name: MEMORIA_JBOSS
@@ -104,29 +103,29 @@ spec:
           privileged: true
         volumeMounts:
         - mountPath: /home/mgeweb/repositorio
-          name: {{ .Release.Namespace  }}-volume
+          name: {{ .Values.imageRepository.volume }}
           subPath: pacotes/repositorio/
         - mountPath: /home/mgeweb/wildfly_producao/standalone/log
-          name: {{ .Release.Namespace  }}-volume
+          name: {{ .Values.imageRepository.volume }}
           subPath: highlander/logs/
         - mountPath: /home/mgeweb/SanNFe
-          name: {{ .Release.Namespace  }}-volume
+          name: {{ .Values.imageRepository.volume }}
           subPath: highlander/SanNFe/
         - mountPath: /home/mgeweb/SankhyaW/Anexos
-          name: {{ .Release.Namespace  }}-volume
+          name: {{ .Values.imageRepository.volume }}
           subPath: highlander/Anexos/
         - mountPath: /home/mgeweb/pacotes-sannfe/
-          name: {{ .Release.Namespace  }}-volume
+          name: {{ .Values.imageRepository.volume }}
           subPath: highlander/pacotes/sannfe/
         - mountPath: /home/mgeweb/sankhyaw-dpm/pkgs
-          name: {{ .Release.Namespace  }}-volume
+          name: {{ .Values.imageRepository.volume }}
           subPath: highlander/jiva-w/
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       securityContext: {}
       terminationGracePeriodSeconds: 0
       volumes:
-      - name: {{ .Release.Namespace  }}-volume
+      - name: {{ .Values.imageRepository.volume }}
         persistentVolumeClaim:
-          claimName: {{ .Release.Namespace  }}-volume
+          claimName: {{ .Values.imageRepository.volume }}
 status: {}

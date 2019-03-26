@@ -3,7 +3,6 @@ apiVersion: v1
 kind: Service
 metadata:
   name: {{  .Values.imageRepository.esocial.fullName }}
-  namespace: {{ .Release.Namespace | quote }}
   labels:
     io.kompose.service: {{  .Values.imageRepository.esocial.fullName }}
 spec:

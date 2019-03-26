@@ -3,7 +3,6 @@ apiVersion: apps/v1beta2
 kind: Deployment
 metadata:
   name: {{  .Values.imageRepository.esocial.fullName   }}
-  namespace: {{ .Release.Namespace   }}
   annotations:
     {{- range $key, $value := .Values.annotations }}
       {{ $key }}: {{ $value }}
@@ -39,7 +38,7 @@ spec:
         - name: APP
           value: {{  .Values.imageRepository.esocial.fullName   }}
         - name: CLIENTE
-          value: {{ .Release.Namespace   }}
+          value: {{ template "jiva-w.server.fullname" .  }}
         - name: PATH_LOG
           value: /home/mgeweb/sanesocial/log/server.log
         image: {{  .Values.imageRepository.esocial.image }}:{{  .Values.imageRepository.esocial.imageTag }}
@@ -52,16 +51,16 @@ spec:
           privileged: true
         volumeMounts:
         - mountPath: /home/mgeweb/sanesocial/conf
-          name: {{ .Release.Namespace   }}-volume
+          name: {{ .Values.imageRepository.volume }}
           subPath: sanesocial/conf
         - mountPath: /home/mgeweb/sanesocial/certificados
-          name: {{ .Release.Namespace   }}-volume
+          name: {{ .Values.imageRepository.volume }}
           subPath: sanesocial/certificados
         - mountPath: /home/mgeweb/sanesocial/log
-          name: {{ .Release.Namespace   }}-volume
+          name: {{ .Values.imageRepository.volume }}
           subPath: sanesocial/log
         - mountPath: /home/mgeweb/sanesocial/properties
-          name: {{ .Release.Namespace   }}-volume
+          name: {{ .Values.imageRepository.volume }}
           subPath: sanesocial/properties
       dnsPolicy: ClusterFirst
       hostNetwork: true
@@ -69,8 +68,8 @@ spec:
       securityContext: {}
       terminationGracePeriodSeconds: 0
       volumes:
-      - name: {{ .Release.Namespace   }}-volume
+      - name: {{ .Values.imageRepository.volume }}
         persistentVolumeClaim:
-          claimName: {{ .Release.Namespace   }}-volume
+          claimName: {{ .Values.imageRepository.volume }}
 status: {}
 {{- end }}
