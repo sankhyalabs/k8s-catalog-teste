@@ -8,7 +8,6 @@ metadata:
     {{- end }}
   generation: 1
   labels:
-    release: {{ .Release.Name }}
     io.kompose.service: {{  .Values.imageRepository.jivaw.fullName   }}
 spec:
   progressDeadlineSeconds: 600

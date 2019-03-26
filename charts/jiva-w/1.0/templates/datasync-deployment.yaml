@@ -9,7 +9,6 @@ metadata:
     {{- end }}
   generation: 1
   labels:
-    release: {{ .Release.Name }}
     io.kompose.service: {{  .Values.imageRepository.datasync.fullName   }}
 spec:
   replicas: 1
