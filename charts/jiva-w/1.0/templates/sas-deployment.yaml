@@ -14,11 +14,9 @@ spec:
         {{ $key }}: {{ $value }}
       {{- end }}
       labels:
-        app: jiva-w
+        app: sas
         release: "{{ .Release.Name }}"
-      selector:
-    matchLabels:
-      io.kompose.service: sas
+        io.kompose.service: sas
     spec:
       containers:
       - name: sas

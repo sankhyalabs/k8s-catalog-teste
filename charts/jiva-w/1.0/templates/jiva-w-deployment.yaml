@@ -18,9 +18,7 @@ spec:
       labels:
         app: jiva-w
         release: "{{ .Release.Name }}"
-      selector:
-    matchLabels:
-      io.kompose.service: jiva-w
+        io.kompose.service: jiva-w
     spec:
       containers:
       - args:
