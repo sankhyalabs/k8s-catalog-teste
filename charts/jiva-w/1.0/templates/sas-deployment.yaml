@@ -17,8 +17,6 @@ spec:
         {{ $key }}: {{ $value }}
       {{- end }}
       labels:
-        app: sas
-        release: "{{ .Release.Name }}"
         io.kompose.service: sas
     spec:
       containers:

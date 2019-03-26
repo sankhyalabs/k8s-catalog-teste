@@ -19,8 +19,6 @@ spec:
         {{ $key }}: {{ $value }}
       {{- end }}
       labels:
-        app: jiva-w
-        release: "{{ .Release.Name }}"
         io.kompose.service: jiva-w
     spec:
       containers:
