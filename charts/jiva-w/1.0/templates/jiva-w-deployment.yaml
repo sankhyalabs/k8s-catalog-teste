@@ -30,32 +30,32 @@ spec:
         - name: APP
           value: jiva-w
         - name: CLIENTE
-          value: {{ .Release.Namespace }}
+          value: "{{ .Release.Namespace }}"
         - name: IP_BD_JIVAW
-          value: {{ .Values.banco.ip }}
+          value: "{{ .Values.banco.ip }}"
         - name: MEMORIA_JBOSS
-          value: {{ .Values.memoria.jivaw.jboss }}
+          value: "{{ .Values.memoria.jivaw.jboss }}"
         {{-  if .Values.pacote.versao }}
         - name: PACOTE_JIVAW
-          value: {{ .Values.pacote.versao }}
+          value: "{{ .Values.pacote.versao }}"
         {{- else }}
         - name: PACOTE_JIVAW
-          value: {{ .Values.pacote.versionNew }}
+          value: "{{ .Values.pacote.versionNew }}"
         {{- end }}
         - name: PATH_LOG
-          value: /home/mgeweb/wildfly_producao/standalone/log/server.log
+          value: "/home/mgeweb/wildfly_producao/standalone/log/server.log"
         - name: PORTA_BD_JIVAW
-          value: {{ .Values.banco.porta }}
+          value: "{{ .Values.banco.porta }}"
         - name: SENHA_BD_JIVAW
-          value: {{ .Values.banco.senha }}
+          value: "{{ .Values.banco.senha }}"
         - name: SID_BD_JIVAW
-          value: {{ .Values.banco.sid }}
+          value: "{{ .Values.banco.sid }}"
         - name: TIPO_BD
-          value: {{ .Values.banco.tipo }}
+          value: "{{ .Values.banco.tipo }}"
         - name: TIPO_SERVIDOR
-          value: WILDFLY
+          value: "WILDFLY"
         - name: USUARIO_BD_JIVAW
-          value: {{ .Values.banco.usuario }}
+          value: "{{ .Values.banco.usuario }}"
         image: {{  .Values.imageRepository.jivaw.image }}:{{  .Values.imageRepository.jivaw.imageTag }}
         imagePullPolicy: Always
         name: jiva-w
