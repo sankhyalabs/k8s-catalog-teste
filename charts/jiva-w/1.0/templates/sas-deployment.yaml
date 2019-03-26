@@ -2,15 +2,20 @@ apiVersion: apps/v1beta2
 kind: Deployment
 metadata:
   name: sas
-  annotations:
-    {{- range $key, $value := .Values.annotations }}
-      {{ $key }}: {{ $value }}
-    {{- end }}
+  generation: 1
 spec:
   replicas: 1
   strategy:
     type: Recreate
   template:
+    metadata:
+      annotations:
+      {{- range $key, $value := .Values.annotations }}
+        {{ $key }}: {{ $value }}
+      {{- end }}
+      labels:
+        app: jiva-w
+        release: "{{ .Release.Name }}"
     spec:
       containers:
       - name: sas
