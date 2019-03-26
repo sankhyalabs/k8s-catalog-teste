@@ -123,6 +123,7 @@ questions:
   label: "Definir hostname do DataSync para o loadBalancer"
   description: "Definir hostname do DataSync para o loadBalancer"
   type: boolean
+  show_if: "datasync.enabled=true"
   default: false
   required: true
   group: "Load Balancing"
