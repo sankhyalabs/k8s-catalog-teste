@@ -3,14 +3,16 @@ kind: Deployment
 metadata:
   name: sas
   generation: 1
+  labels:
+    io.kompose.service: sas
 spec:
   replicas: 1
+  selector:
+      matchLabels:
+        io.kompose.service: sas
   strategy:
     type: Recreate
   template:
-    selector:
-      matchLabels:
-        io.kompose.service: sas
     metadata:
       annotations:
       {{- range $key, $value := .Values.annotations }}
