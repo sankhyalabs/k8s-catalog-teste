@@ -1,27 +1,23 @@
-﻿apiVersion: apps/v1beta2
+﻿apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: {{  .Values.imageRepository.jivaw.fullName   }}
-  annotations:
-    {{- range $key, $value := .Values.annotations }}
-      {{ $key }}: {{ $value }}
-    {{- end }}
+  name: jiva-w-deployment
   generation: 1
   labels:
-    io.kompose.service: {{  .Values.imageRepository.jivaw.fullName   }}
+    io.kompose.service: jiva-w-service
 spec:
   progressDeadlineSeconds: 600
   replicas: 1
   revisionHistoryLimit: 10
   selector:
     matchLabels:
-      io.kompose.service: {{  .Values.imageRepository.jivaw.fullName   }}
+      io.kompose.service: jiva-w-service
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        io.kompose.service: {{  .Values.imageRepository.jivaw.fullName   }}
+        io.kompose.service: jiva-w-service
     spec:
       containers:
       - args:
@@ -40,7 +36,7 @@ spec:
         - -c
         env:
         - name: APP
-          value: {{  .Values.imageRepository.jivaw.fullName   }}
+          value: jiva-w-
         - name: CLIENTE
           value: {{ .Release.Namespace }}
         - name: IP_BD_JIVAW
@@ -70,7 +66,7 @@ spec:
           value: {{ .Values.banco.usuario }}
         image: {{  .Values.imageRepository.jivaw.image }}:{{  .Values.imageRepository.jivaw.imageTag }}
         imagePullPolicy: Always
-        name: {{  .Values.imageRepository.jivaw.fullName   }}
+        name: jiva-w-deployment
         livenessProbe:
           failureThreshold: 3
           initialDelaySeconds: 100

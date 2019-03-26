@@ -10,7 +10,7 @@ spec:
     http:
       paths:
       - backend:
-          serviceName: {{  .Values.imageRepository.jivaw.fullName }}
+          serviceName: jiva-w-service
           servicePort: 9990
         path: /mge
   {{- end }}

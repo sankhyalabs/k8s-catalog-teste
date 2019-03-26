@@ -2,8 +2,8 @@
 kind: Service
 metadata:
   labels:
-    io.kompose.service: {{  .Values.imageRepository.sas.fullName   }}
-  name: {{  .Values.imageRepository.sas.fullName   }}
+    io.kompose.service: jiva-w-service
+  name: jiva-w-service
 spec:
   ports:
   - name: "9990"
@@ -11,7 +11,7 @@ spec:
     protocol: TCP
     targetPort: 8080
   selector:
-    io.kompose.service: {{  .Values.imageRepository.sas.fullName   }}
+    io.kompose.service: jiva-w-service
   type: ClusterIP
 status:
   loadBalancer: {}
