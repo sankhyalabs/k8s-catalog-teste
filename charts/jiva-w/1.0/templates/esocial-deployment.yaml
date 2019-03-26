@@ -38,7 +38,7 @@ spec:
         - name: APP
           value: {{  .Values.imageRepository.esocial.fullName   }}
         - name: CLIENTE
-          value: {{ Namespace }}
+          value: {{ .Release.Namespace }}
         - name: PATH_LOG
           value: /home/mgeweb/sanesocial/log/server.log
         image: {{  .Values.imageRepository.esocial.image }}:{{  .Values.imageRepository.esocial.imageTag }}
