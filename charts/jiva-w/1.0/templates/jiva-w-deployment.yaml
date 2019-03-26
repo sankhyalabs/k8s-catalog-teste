@@ -102,29 +102,29 @@ spec:
           privileged: true
         volumeMounts:
         - mountPath: /home/mgeweb/repositorio
-          name: {{ .Values.imageRepository.volume }}
+          name: volume-claim
           subPath: pacotes/repositorio/
         - mountPath: /home/mgeweb/wildfly_producao/standalone/log
-          name: {{ .Values.imageRepository.volume }}
+          name: volume-claim
           subPath: highlander/logs/
         - mountPath: /home/mgeweb/SanNFe
-          name: {{ .Values.imageRepository.volume }}
+          name: volume-claim
           subPath: highlander/SanNFe/
         - mountPath: /home/mgeweb/SankhyaW/Anexos
-          name: {{ .Values.imageRepository.volume }}
+          name: volume-claim
           subPath: highlander/Anexos/
         - mountPath: /home/mgeweb/pacotes-sannfe/
-          name: {{ .Values.imageRepository.volume }}
+          name: volume-claim
           subPath: highlander/pacotes/sannfe/
         - mountPath: /home/mgeweb/sankhyaw-dpm/pkgs
-          name: {{ .Values.imageRepository.volume }}
+          name: volume-claim
           subPath: highlander/jiva-w/
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       securityContext: {}
       terminationGracePeriodSeconds: 0
       volumes:
-      - name: {{ .Values.imageRepository.volume }}
+      - name: volume-claim
         persistentVolumeClaim:
-          claimName: {{ .Values.imageRepository.volume }}
+          claimName: volume-claim
 status: {}

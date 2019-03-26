@@ -30,19 +30,19 @@ spec:
         - sudo chown -R mgeweb:mgeweb  /home/mgeweb/pacotes-sas/ /tmp/ && java -jar /opt/DSM/docker-sas-manager.jar /SAS && sleep 5 && tar -xzf /tmp/SAS.tar.gz -C /tmp/ &&  sudo chown -R mgeweb:mgeweb /tmp/ /opt/SAS/* && sleep 5  && /opt/DSM/scripts/./run-sas.sh && sleep 2 && tail -f /opt/SAS/log/server*.log
         env: 
         - name: HASDELPHI
-          value: {{ .Values.sasdelphi.enabled }}
+          value: "{{ .Values.sasdelphi.enabled }}"
         - name: IP_BD_JIVAW
-          value: {{ .Values.banco.ip }}
+          value: "{{ .Values.banco.ip }}"
         - name: PORTA_BD_JIVAW
-          value: {{ .Values.banco.porta }}
+          value: "{{ .Values.banco.porta }}"
         - name: SENHA_BD_JIVAW
-          value: {{ .Values.banco.senha }}
+          value: "{{ .Values.banco.senha }}"
         - name: SID_BD_JIVAW
-          value: {{ .Values.banco.sid }}
+          value: "{{ .Values.banco.sid }}"
         - name: TIPO_BD
-          value: {{ .Values.banco.tipo }}
+          value: "{{ .Values.banco.tipo }}"
         - name: USUARIO_BD_JIVAW
-          value: {{ .Values.banco.usuario }}
+          value: "{{ .Values.banco.usuario }}"
         livenessProbe:
           failureThreshold: 2
           initialDelaySeconds: 6
@@ -61,10 +61,10 @@ spec:
           timeoutSeconds: 6
         volumeMounts:
         - mountPath: /home/mgeweb/pacotes-sas/
-          name: {{ .Values.imageRepository.volume }}
+          name: volume-claim
           subPath: pacotes/sas
         - mountPath: /opt/SAS/licenca
-          name: {{ .Values.imageRepository.volume }}
+          name: volume-claim
           subPath: highlander/SAS/
       dnsPolicy: ClusterFirst
       hostNetwork: true
@@ -72,7 +72,7 @@ spec:
       securityContext: {}
       terminationGracePeriodSeconds: 0
       volumes:
-      - name: {{ .Values.imageRepository.volume }}
+      - name: volume-claim
         persistentVolumeClaim:
-          claimName: {{ .Values.imageRepository.volume }}
+          claimName: volume-claim
 status: {}
