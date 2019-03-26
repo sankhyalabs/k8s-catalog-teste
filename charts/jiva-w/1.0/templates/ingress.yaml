@@ -8,7 +8,7 @@ metadata:
 spec:
   rules:
   {{- if .Values.jivaw.enabled }}
-  - host: {{ .Release.Name "server"  }}-jivaw{{ .Values.loadBalancer.dns }}
+  - host: {{ .Release.Namespace }}-jivaw{{ .Values.loadBalancer.dns }}
     http:
       paths:
       - backend:
@@ -17,7 +17,7 @@ spec:
         path: /mge
   {{- end }}
   {{- if .Values.datasync.enabled }}
-  - host: {{ .Release.Name "server"  }}-datasync{{ .Values.loadBalancer.dns }}
+  - host: {{ .Release.Namespace  }}-datasync{{ .Values.loadBalancer.dns }}
     http:
       paths:
       - backend:
@@ -26,7 +26,7 @@ spec:
         path: /datasync.html
   {{- end }}
   {{- if .Values.esocial.enabled }}
-  - host: {{ .Release.Name "server"  }}-esocial{{ .Values.loadBalancer.dns }}
+  - host: {{ .Release.Namespace }}-esocial{{ .Values.loadBalancer.dns }}
     http:
       paths:
       - backend:
