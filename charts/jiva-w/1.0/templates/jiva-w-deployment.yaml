@@ -10,6 +10,9 @@ spec:
   strategy:
     type: Recreate
   template:
+    selector:
+      matchLabels:
+        io.kompose.service: jiva-w
     metadata:
       annotations:
       {{- range $key, $value := .Values.annotations }}
