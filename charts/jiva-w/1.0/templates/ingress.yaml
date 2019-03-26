@@ -1,4 +1,3 @@
-{{- if ( or .Values.jivaw.enabled .Values.esocial.enabled  .Values.datasync.enabled ) }}
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
@@ -15,27 +14,5 @@ spec:
           servicePort: 9990
         path: /mge
   {{- end }}
-  {{- if .Values.datasync.enabled }}
-  - host: {{ .Release.Namespace  }}-datasync{{ .Values.loadBalancer.dns }}
-    http:
-      paths:
-      - backend:
-          serviceName: {{  .Values.imageRepository.datasync.fullName }}
-          servicePort: 9980
-        path: /datasync.html
-  {{- end }}
-  {{- if .Values.esocial.enabled }}
-  - host: {{ .Release.Namespace }}-esocial{{ .Values.loadBalancer.dns }}
-    http:
-      paths:
-      - backend:
-          serviceName: {{  .Values.imageRepository.esocial.fullName }}
-          servicePort: 8778
-        path: /index.html
-    {{- end }}
-  tls:
-  - hosts:
-    - lb-jivaw.highlander.xip.io
 status:
   loadBalancer: {}
-{{- end }}

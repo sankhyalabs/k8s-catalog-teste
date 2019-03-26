@@ -101,20 +101,6 @@ questions:
   default: false
   required: true
   group: "Outras Aplicações"
-- variable: datasync.enabled
-  label: "Cliente possui Data Sync?"
-  description: Caso seja marcado true irá subir um container para o Data Sync
-  type: boolean
-  default: false
-  required: true
-  group: "Outras Aplicações"
-- variable: esocial.enabled
-  label: "Cliente possui eSocial?"
-  description: "Caso seja marcado true irá subir um container com o SanESocial"
-  type: boolean
-  default: false
-  required: true
-  group: "Outras Aplicações"
 
 # Load Balancer
 - variable: loadBalancer.jivaw.enabled
@@ -124,24 +110,6 @@ questions:
   default: false
   required: true
   group: "Load Balancing"
-
-- variable: loadBalancer.datasync.enabled
-  label: "Definir hostname do Datasync para o loadBalancer"
-  description: "Definir hostname do Datasync para o loadBalancer"
-  type: boolean
-  default: false
-  required: true
-  group: "Load Balancing"
-  show_if: "datasync.enabled=true"
-
-- variable: loadBalancer.esocial.enabled
-  label: "Definir hostname do Sanesocial para o loadBalancer"
-  description: "Definir hostname do Sanesocial para o loadBalancer"
-  type: boolean
-  default: false
-  required: true
-  group: "Load Balancing"
-  show_if: "esocial.enabled=true"
 
 
 
