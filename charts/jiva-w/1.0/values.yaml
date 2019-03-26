@@ -9,6 +9,10 @@ imageRepository:
     fullName: "sas" 
     image: "highlanderdantas/sas"
     imageTag: "v1.4"
+  datasync:
+    fullName: "datasync" 
+    image: "highlanderdantas/datasync"
+    imageTag: "v1.4"
 
 annotations: {}
 
@@ -41,10 +45,16 @@ sasdelphi:
 jivaw:
   enabled: true
 
+## Possui Datasync
+datasync:
+  enabled: true
+
 
 ## Configurações de url de acesso
 loadBalancer:
   dns: .dev.jiva.com.br
   jivaw:
+    enabled: false
+  datasync:
     enabled: false
 

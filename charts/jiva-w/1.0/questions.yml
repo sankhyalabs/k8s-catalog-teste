@@ -102,10 +102,26 @@ questions:
   required: true
   group: "Outras Aplicações"
 
+- variable: datasync.enabled
+  label: "Cliente possui Datasync?"
+  description: "Caso seja marcado true irá subir um container para o Data Sync"
+  type: boolean
+  default: false
+  required: true
+  group: "Outras Aplicações"
+
 # Load Balancer
 - variable: loadBalancer.jivaw.enabled
   label: "Definir hostname do Jivaw para o loadBalancer"
   description: "Definir hostname do Jivaw para o loadBalancer"
+  type: boolean
+  default: false
+  required: true
+  group: "Load Balancing"
+
+- variable: loadBalancer.datasync.enabled
+  label: "Definir hostname do DataSync para o loadBalancer"
+  description: "Definir hostname do DataSync para o loadBalancer"
   type: boolean
   default: false
   required: true

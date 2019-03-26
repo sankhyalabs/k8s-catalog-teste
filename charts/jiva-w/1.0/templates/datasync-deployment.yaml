@@ -1,0 +1,77 @@
+{{- if .Values.datasync.enabled }}
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: datasync
+  generation: 1
+  labels:
+    io.kompose.service: datasync
+spec:
+  replicas: 1
+  selector:
+    matchLabels: 
+      io.kompose.service: datasync
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+      {{- range $key, $value := .Values.annotations }}
+        {{ $key }}: {{ $value }}
+      {{- end }}
+      labels:
+        io.kompose.service: datasync
+    spec:
+      containers:
+      - name: datasync
+        image: {{ .Values.imageRepository.datasync.image }}:{{ .Values.imageRepository.datasync.imageTag }}
+        imagePullPolicy: Always
+        command: ["/bin/sh", "-c"]
+        args:
+        - sudo chown -R mgeweb:mgeweb /home/mgeweb/pacotes-datasync/ && java -jar /home/mgeweb/DDM/docker-datasync-manager.jar  && sleep 5 && sudo chown -R mgeweb:mgeweb /home/mgeweb/DataSync/ && /home/mgeweb/DDM/scripts/./run-datasync.sh && /home/mgeweb/DataSync/./datasync-service start && sleep 15 && tail -f /home/mgeweb/DataSync/log/server.log
+        resources: {}
+        securityContext:
+          allowPrivilegeEscalation: true
+          capabilities: {}
+          privileged: true
+        volumeMounts:
+        - mountPath: /home/mgeweb/DataSync/conf
+          name: volume-claim
+          subPath: highlander/datasync/conf
+        - mountPath: /home/mgeweb/DataSync/email
+          name: volume-claim
+          subPath: highlander/datasync/email
+        - mountPath: /home/mgeweb/DataSync/exported
+          name: volume-claim
+          subPath: highlander/datasync/exported
+        - mountPath: /home/mgeweb/DataSync/filetransfer_home
+          name: volume-claim
+          subPath: highlander/datasync/filetransfer_home
+        - mountPath: /home/mgeweb/DataSync/log
+          name: volume-claim
+          subPath: highlander/datasync/log
+        - mountPath: /home/mgeweb/DataSync/processed
+          name: volume-claim
+          subPath: highlander/datasync/processed
+        - mountPath: /home/mgeweb/DataSync/sync
+          name: volume-claim
+          subPath: highlander/datasync/sync
+        - mountPath: /home/mgeweb/DataSync/tracking
+          name: volume-claim
+          subPath: highlander/datasync/tracking
+        - mountPath: /home/mgeweb/DataSync/work
+          name: volume-claim
+          subPath: highlander/datasync/work
+        - mountPath: /home/mgeweb/pacotes-datasync/
+          name: volume-claim
+          subPath: highlander/datasync/pacotes/datasync
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      securityContext: {}
+      terminationGracePeriodSeconds: 0
+      volumes:
+      - name: volume-claim
+        persistentVolumeClaim:
+          claimName: volume-claim
+status: {}
+{{- end }}
