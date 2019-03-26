@@ -10,7 +10,7 @@ spec:
     http:
       paths:
       - backend:
-          serviceName: jiva-w-service
+          serviceName: jiva-w
           servicePort: 9990
         path: /mge
   {{- end }}
