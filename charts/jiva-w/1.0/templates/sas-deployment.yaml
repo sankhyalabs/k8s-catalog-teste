@@ -16,6 +16,9 @@ spec:
       labels:
         app: jiva-w
         release: "{{ .Release.Name }}"
+      selector:
+    matchLabels:
+      io.kompose.service: sas
     spec:
       containers:
       - name: sas
