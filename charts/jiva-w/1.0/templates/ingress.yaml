@@ -1,5 +1,4 @@
-﻿
-{{- if ( or .Values.jivaw.enabled .Values.esocial.enabled  .Values.datasync.enabled ) }}
+﻿{{- if ( or .Values.jivaw.enabled .Values.esocial.enabled  .Values.datasync.enabled ) }}
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
