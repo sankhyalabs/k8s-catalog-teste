@@ -23,5 +23,14 @@ spec:
           servicePort: 9980
         path: /datasync.html
   {{- end }}
+  {{- if .Values.loadBalancer.esocial.enabled }}
+  - host: {{ .Release.Namespace }}-esocial{{ .Values.loadBalancer.dns }}
+    http:
+      paths:
+      - backend:
+          serviceName: esocial
+          servicePort: 9970
+        path: /index.html
+  {{- end }}
 status:
   loadBalancer: {}

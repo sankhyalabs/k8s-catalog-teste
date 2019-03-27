@@ -13,6 +13,10 @@ imageRepository:
     fullName: "datasync" 
     image: "highlanderdantas/datasync"
     imageTag: "v1.4"
+  esocial:
+    fullName: "esocial" 
+    image: "highlanderdantas/esocial"
+    imageTag: "v1.4"
 
 annotations: {}
 
@@ -47,7 +51,11 @@ jivaw:
 
 ## Possui Datasync
 datasync:
-  enabled: true
+  enabled: false
+
+## Possui Esocial
+esocial:
+  enabled: false
 
 
 ## Configurações de url de acesso
@@ -57,4 +65,6 @@ loadBalancer:
     enabled: false
   datasync:
     enabled: false
+  esocial:
+    enabled: false 
 
