@@ -11,7 +11,7 @@ spec:
       paths:
       - backend:
           serviceName: jiva-w
-          servicePort: 9990
+          servicePort: 8080
         path: /mge
   {{- end }}
   {{- if .Values.loadBalancer.datasync.enabled }}
@@ -20,7 +20,7 @@ spec:
       paths:
       - backend:
           serviceName: datasync
-          servicePort: 9980
+          servicePort: 8080
         path: /datasync.html
   {{- end }}
   {{- if .Values.loadBalancer.esocial.enabled }}
@@ -29,7 +29,7 @@ spec:
       paths:
       - backend:
           serviceName: esocial
-          servicePort: 9970
+          servicePort: 8778
         path: /index.html
   {{- end }}
 status:
