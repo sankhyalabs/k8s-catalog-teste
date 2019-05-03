@@ -1,0 +1,21 @@
+{{- if .Values.datasync.enabled }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: datasync-claim
+  annotations:
+    {{- range $key, $value := .Values.annotations }}
+      {{ $key }}: {{ $value }}
+    {{- end }}
+  finalizers:
+  - kubernetes.io/pvc-protection
+  labels:
+    io.kompose.service: datasync-claim
+spec:
+  accessModes:
+  - ReadWriteOnce
+  storageClassName: "{{ .Values.imageRepository.storageClass }}"
+  resources:
+    requests:
+      storage: 500Mi
+{{- end }}

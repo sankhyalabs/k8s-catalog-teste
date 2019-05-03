@@ -70,17 +70,17 @@ spec:
           timeoutSeconds: 6
         volumeMounts:
         - mountPath: /home/mgeweb/pacotes-sas/
-          name: sas-claim
+          name: volume-claim
           subPath: pacotes/sas
         - mountPath: /opt/SAS/licenca
-          name: sas-claim
+          name: volume-claim
           subPath: {{ .Release.Namespace }}/SAS/
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       securityContext: {}
       terminationGracePeriodSeconds: 0
       volumes:
-      - name: sas-claim
+      - name: volume-claim
         persistentVolumeClaim:
-          claimName: sas-claim
+          claimName: volume-claim
 status: {}

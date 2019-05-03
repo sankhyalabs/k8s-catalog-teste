@@ -1,5 +1,5 @@
 categories:
-- jiva
+- sankhya
 labels:
   io.rancher.certified: partner
 questions:
@@ -9,9 +9,9 @@ questions:
   description: "Pacote que será instalado (será buscado no ftp-sankhya)"
   type: enum
   options: 
-    - "jiva-w_3.29b91.pkg"
-    - "jiva-w_3.28b272.pkg"
-    - "jiva-w_3.27b347.pkg"
+    - "sankhya-w_3.29b136.pkg"
+    - "sankhya-w_3.28b309.pkg"
+    - "sankhya-w_3.27b376.pkg"
     - "outros..."
   required: true
   group: "Pacote para instalação"
@@ -66,7 +66,7 @@ questions:
   group: "Configurando o Banco de Dados"
 
 # Memoria da Aplicação e Volume
-- variable: memoria.jivaw.jboss
+- variable: memoria.sankhyaw.jboss
   label: "Memória de inicialização do WildFly"
   description: "Memória de inicialização do WildFly"
   type: enum
@@ -75,24 +75,24 @@ questions:
     - "-Xms512m -Xmx1304m"
   required: true
   group: "Configurando Memoria da Aplicação"
-- variable: memoria.jivaw.maximo
+- variable: memoria.sankhyaw.maximo
   label: "Quantidade de memória máxima do container"
   description: "Memória máxima que será alocada para o container."
   type: string
   default: "1536"
   required: true
   group: "Configurando Memoria da Aplicação"
-- variable: memoria.jivaw.media
+- variable: memoria.sankhyaw.media
   label: "Quantidade de memória media do container"
   description: "Memória media que será alocada para o container."
   type: string
   default: "1024"
   required: true
   group: "Configurando Memoria da Aplicação"
-- variable: imageRepository.storageClass
-  label: "StorageClass para o Jiva-W"
-  description: "StorageClass para o Jiva-W"
-  type: storageclass
+- variable: imageRepository.volume
+  label: "Nome do volume do cluster"
+  description: "Nome do volume do cluster"
+  type: string
   default: ""
   required: true
   group: "Configurando Memoria da Aplicação"
@@ -123,9 +123,9 @@ questions:
   group: "Outras Aplicações"
 
 # Load Balancer
-- variable: loadBalancer.jivaw.enabled
-  label: "Definir hostname do Jivaw para o loadBalancer"
-  description: "Definir hostname do Jivaw para o loadBalancer"
+- variable: loadBalancer.sankhyaw.enabled
+  label: "Definir hostname do Sankhya-W para o loadBalancer"
+  description: "Definir hostname do Sankhya-W para o loadBalancer"
   type: boolean
   default: false
   required: true

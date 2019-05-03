@@ -35,40 +35,43 @@ spec:
           capabilities: {}
           privileged: true
         volumeMounts:
+        - mountPath: /home/mgeweb/DataSync/log
+          name: volume-claim
+          subPath: {{ .Release.Namespace }}/datasync/log
         - mountPath: /home/mgeweb/DataSync/conf
-          name: datasync-claim
+          name: volume-claim
           subPath: {{ .Release.Namespace }}/datasync/conf
         - mountPath: /home/mgeweb/DataSync/email
-          name: datasync-claim
+          name: volume-claim
           subPath: {{ .Release.Namespace }}/datasync/email
         - mountPath: /home/mgeweb/DataSync/exported
-          name: datasync-claim
+          name: volume-claim
           subPath: {{ .Release.Namespace }}/datasync/exported
         - mountPath: /home/mgeweb/DataSync/filetransfer_home
-          name: datasync-claim
+          name: volume-claim
           subPath: {{ .Release.Namespace }}/datasync/filetransfer_home
         - mountPath: /home/mgeweb/DataSync/processed
-          name: datasync-claim
+          name: volume-claim
           subPath: {{ .Release.Namespace }}/datasync/processed
         - mountPath: /home/mgeweb/DataSync/sync
-          name: datasync-claim
+          name: volume-claim
           subPath: {{ .Release.Namespace }}/datasync/sync
         - mountPath: /home/mgeweb/DataSync/tracking
-          name: datasync-claim
+          name: volume-claim
           subPath: {{ .Release.Namespace }}/datasync/tracking
         - mountPath: /home/mgeweb/DataSync/work
-          name: datasync-claim
+          name: volume-claim
           subPath: {{ .Release.Namespace }}/datasync/work
         - mountPath: /home/mgeweb/pacotes-datasync/
-          name: datasync-claim
+          name: volume-claim
           subPath: {{ .Release.Namespace }}/datasync/pacotes/datasync
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       securityContext: {}
       terminationGracePeriodSeconds: 0
       volumes:
-      - name: datasync-claim
+      - name: volume-claim
         persistentVolumeClaim:
-          claimName: datasync-claim
+          claimName: volume-claim
 status: {}
 {{- end }}

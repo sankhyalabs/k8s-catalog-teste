@@ -1,20 +1,20 @@
 # Imagens Hub e Versões
 imageRepository:
-  storageClass: "volume-claim"
-  jivaw:
-    fullName: "jiva-w"
+  volume: "volume-claim"
+  sankhyaw:
+    fullName: "sankhya-w"
     image: "highlanderdantas/snk-jiva-w"
     imageTag: "v1.4"
   sas:
-    fullName: "sas"
+    fullName: "sas" 
     image: "highlanderdantas/sas"
     imageTag: "v1.4"
   datasync:
-    fullName: "datasync"
+    fullName: "datasync" 
     image: "highlanderdantas/datasync"
     imageTag: "v1.4"
   esocial:
-    fullName: "esocial"
+    fullName: "esocial" 
     image: "highlanderdantas/esocial"
     imageTag: "v1.4"
 
@@ -36,7 +36,7 @@ banco:
 
 ## Memoria Jivaw
 memoria:
-  jivaw:
+  sankhyaw:
     jboss: "-Xms512m -Xmx1304m"
     maximo: "1536"
     media: "1024"
@@ -45,8 +45,8 @@ memoria:
 sasdelphi:
   enabled: false
 
-## Possui Jivaw
-jivaw:
+## Possui Sankhyaw
+sankhyaw:
   enabled: true
 
 ## Possui Datasync
@@ -57,12 +57,14 @@ datasync:
 esocial:
   enabled: false
 
+
 ## Configurações de url de acesso
 loadBalancer:
-  dns: .teste.jivacloud.com.br
-  jivaw:
+  dns: .teste.sankhyacloud.com.br
+  sankhyaw:
     enabled: false
   datasync:
     enabled: false
   esocial:
-    enabled: false
+    enabled: false 
+

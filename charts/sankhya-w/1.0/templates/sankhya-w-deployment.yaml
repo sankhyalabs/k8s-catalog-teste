@@ -1,17 +1,17 @@
 apiVersion: apps/v1beta2
 kind: Deployment
 metadata:
-  name: jiva-w
+  name: sankhya-w
   generation: 1
   labels:
-    io.kompose.service: jiva-w
+    io.kompose.service: sankhya-w
 spec:
   progressDeadlineSeconds: 600
   replicas: 1
   revisionHistoryLimit: 10
   selector:
     matchLabels:
-      io.kompose.service: jiva-w
+      io.kompose.service: sankhya-w
   strategy:
     type: Recreate
   template:
@@ -21,7 +21,7 @@ spec:
         {{ $key }}: {{ $value }}
       {{- end }}
       labels:
-        io.kompose.service: jiva-w
+        io.kompose.service: sankhya-w
     spec:
       containers:
       - args:
@@ -40,46 +40,37 @@ spec:
         - -c
         env:
         - name: APP
-          value: jiva-w
+          value: sankhya-w
         - name: CLIENTE
           value: "{{ .Release.Namespace }}"
+        - name: IP_BD_SNKW
+          value: "{{ .Values.banco.ip }}"
         - name: MEMORIA_JBOSS
-          value: "{{ .Values.memoria.jivaw.jboss }}"
+          value: "{{ .Values.memoria.sankhyaw.jboss }}"
         {{ if not .Values.pacote.versionNew }}
-        - name: PACOTE_JIVAW
+        - name: PACOTE_SNKW
           value: "{{ .Values.pacote.versao }}"
         {{- else }}
-        - name: PACOTE_JIVAW
+        - name: PACOTE_SNKW
           value: "{{ .Values.pacote.versionNew }}"
         {{- end }}
         - name: PATH_LOG
           value: "/home/mgeweb/wildfly_producao/standalone/log/server.log"
-        - name: PORTA_BD_JIVAW
+        - name: PORTA_BD_SNKW
           value: "{{ .Values.banco.porta }}"
+        - name: SENHA_BD_SNKW
+          value: "{{ .Values.banco.senha }}"
+        - name: SID_BD_SNKW
+          value: "{{ .Values.banco.sid }}"
         - name: TIPO_BD
           value: "{{ .Values.banco.tipo }}"
         - name: TIPO_SERVIDOR
           value: "WILDFLY"
-        - name: SID_BD_JIVAW
-          value: "{{ .Values.banco.sid }}"
-        - name: IP_BD_JIVAW
-          valueFrom:
-            secretKeyRef:
-              name: jiva-w
-              key: banco-ip
-        - name: SENHA_BD_JIVAW
-          valueFrom:
-            secretKeyRef:
-              name: jiva-w
-              key: banco-password
-        - name: USUARIO_BD_JIVAW
-          valueFrom:
-            secretKeyRef:
-              name: jiva-w
-              key: banco-user 
-        image: {{  .Values.imageRepository.jivaw.image }}:{{  .Values.imageRepository.jivaw.imageTag }}
+        - name: USUARIO_BD_SNKW
+          value: "{{ .Values.banco.usuario }}"
+        image: {{  .Values.imageRepository.sankhyaw.image }}:{{  .Values.imageRepository.sankhyaw.imageTag }}
         imagePullPolicy: Always
-        name: jiva-w
+        name: sankhya-w
         livenessProbe:
           failureThreshold: 3
           initialDelaySeconds: 100
@@ -101,35 +92,35 @@ spec:
           timeoutSeconds: 60
         resources:
           limits:
-            memory: {{ .Values.memoria.jivaw.maximo }}Mi
+            memory: {{ .Values.memoria.sankhyaw.maximo }}Mi
           requests:
-            memory: {{ .Values.memoria.jivaw.media }}Mi
+            memory: {{ .Values.memoria.sankhyaw.media }}Mi
         securityContext:
           allowPrivilegeEscalation: true
           capabilities: {}
           privileged: true
         volumeMounts:
         - mountPath: /home/mgeweb/repositorio
-          name: jiva-w-claim
+          name: volume-claim
           subPath: {{ .Release.Namespace }}/repositorio/
         - mountPath: /home/mgeweb/SanNFe
-          name: jiva-w-claim
+          name: volume-claim
           subPath: {{ .Release.Namespace }}/SanNFe/
         - mountPath: /home/mgeweb/SankhyaW/Anexos
-          name: jiva-w-claim
+          name: volume-claim
           subPath: {{ .Release.Namespace }}/Anexos/
         - mountPath: /home/mgeweb/pacotes-sannfe/
-          name: jiva-w-claim
+          name: volume-claim
           subPath: {{ .Release.Namespace }}/pacotes/sannfe/
         - mountPath: /home/mgeweb/sankhyaw-dpm/pkgs
-          name: jiva-w-claim
-          subPath: {{ .Release.Namespace }}/jiva-w/
+          name: volume-claim
+          subPath: {{ .Release.Namespace }}/sankhya-w/
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       securityContext: {}
       terminationGracePeriodSeconds: 0
       volumes:
-      - name: jiva-w-claim
+      - name: volume-claim
         persistentVolumeClaim:
-          claimName: jiva-w-claim
+          claimName: volume-claim
 status: {}

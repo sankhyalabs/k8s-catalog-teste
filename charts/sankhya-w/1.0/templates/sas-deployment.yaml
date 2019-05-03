@@ -31,56 +31,47 @@ spec:
         env: 
         - name: HASDELPHI
           value: "{{ .Values.sasdelphi.enabled }}"
-        - name: PORTA_BD_JIVAW
+        - name: IP_BD_SNKW
+          value: "{{ .Values.banco.ip }}"
+        - name: PORTA_BD_SNKW
           value: "{{ .Values.banco.porta }}"
-        - name: SID_BD_JIVAW
+        - name: SENHA_BD_SNKW
+          value: "{{ .Values.banco.senha }}"
+        - name: SID_BD_SNKW
           value: "{{ .Values.banco.sid }}"
         - name: TIPO_BD
           value: "{{ .Values.banco.tipo }}"
-        - name: IP_BD_JIVAW
-          valueFrom:
-            secretKeyRef:
-              name: jiva-w
-              key: banco-ip
-        - name: SENHA_BD_JIVAW
-          valueFrom:
-            secretKeyRef:
-              name: jiva-w
-              key: banco-password
-        - name: USUARIO_BD_JIVAW
-          valueFrom:
-            secretKeyRef:
-              name: jiva-w
-              key: banco-user
+        - name: USUARIO_BD_SNKW
+          value: "{{ .Values.banco.usuario }}"
         livenessProbe:
-          failureThreshold: 3
+          failureThreshold: 2
           initialDelaySeconds: 30
-          periodSeconds: 30
+          periodSeconds: 6
           successThreshold: 1
           tcpSocket:
             port: 10050
           timeoutSeconds: 6
         readinessProbe:
-          failureThreshold: 3
+          failureThreshold: 2
           initialDelaySeconds: 30
-          periodSeconds: 30
+          periodSeconds: 6
           successThreshold: 1
           tcpSocket:
             port: 10050
           timeoutSeconds: 6
         volumeMounts:
         - mountPath: /home/mgeweb/pacotes-sas/
-          name: sas-claim
+          name: volume-claim
           subPath: pacotes/sas
         - mountPath: /opt/SAS/licenca
-          name: sas-claim
+          name: volume-claim
           subPath: {{ .Release.Namespace }}/SAS/
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       securityContext: {}
       terminationGracePeriodSeconds: 0
       volumes:
-      - name: sas-claim
+      - name: volume-claim
         persistentVolumeClaim:
-          claimName: sas-claim
+          claimName: volume-claim
 status: {}

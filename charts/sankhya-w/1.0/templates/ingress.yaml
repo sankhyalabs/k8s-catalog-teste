@@ -1,4 +1,4 @@
-{{- if ( or .Values.loadBalancer.jivaw.enabled .Values.loadBalancer.esocial.enabled  .Values.loadBalancer.datasync.enabled ) }}
+{{- if ( or .Values.loadBalancer.sankhyaw.enabled .Values.loadBalancer.esocial.enabled  .Values.loadBalancer.datasync.enabled ) }}
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
@@ -6,16 +6,17 @@ metadata:
   name: ingress
 spec:
   rules:
-  {{- if .Values.loadBalancer.jivaw.enabled }}
-  - host: {{ .Release.Namespace }}{{ .Values.loadBalancer.dns }}
+  {{- if .Values.loadBalancer.sankhyaw.enabled }}
+  - host: {{ .Release.Namespace }}-sankhya-w{{ .Values.loadBalancer.dns }}
     http:
       paths:
       - backend:
-          serviceName: jiva-w
+          serviceName: sankhya-w
           servicePort: 8080
+        path: /mge
   {{- end }}
   {{- if .Values.loadBalancer.datasync.enabled }}
-  - host: datasync-{{ .Release.Namespace }}{{ .Values.loadBalancer.dns }}
+  - host: {{ .Release.Namespace }}-datasync{{ .Values.loadBalancer.dns }}
     http:
       paths:
       - backend:
@@ -23,7 +24,7 @@ spec:
           servicePort: 8080
   {{- end }}
   {{- if .Values.loadBalancer.esocial.enabled }}
-  - host: esocial-{{ .Release.Namespace }}{{ .Values.loadBalancer.dns }}
+  - host: {{ .Release.Namespace }}-esocial{{ .Values.loadBalancer.dns }}
     http:
       paths:
       - backend:

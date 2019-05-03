@@ -1,0 +1,19 @@
+﻿apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: sas-claim
+  annotations:
+    {{- range $key, $value := .Values.annotations }}
+      {{ $key }}: {{ $value }}
+    {{- end }}
+  finalizers:
+  - kubernetes.io/pvc-protection
+  labels:
+    io.kompose.service: sas-claim
+spec:
+  accessModes:
+  - ReadWriteOnce
+  storageClassName: "{{ .Values.imageRepository.storageClass }}"
+  resources:
+    requests:
+      storage: 200Mi

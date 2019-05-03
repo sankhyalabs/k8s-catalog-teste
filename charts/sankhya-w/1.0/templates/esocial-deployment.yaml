@@ -50,21 +50,21 @@ spec:
           privileged: true
         volumeMounts:
         - mountPath: /home/mgeweb/sanesocial/conf
-          name: esocial-claim
-          subPath: {{ .Release.Namespace }}/sanesocial/conf
+          name: volume-claim
+          subPath: sanesocial/conf
         - mountPath: /home/mgeweb/sanesocial/certificados
-          name: esocial-claim
-          subPath: {{ .Release.Namespace }}/sanesocial/certificados
+          name: volume-claim
+          subPath: sanesocial/certificados
         - mountPath: /home/mgeweb/sanesocial/properties
-          name: esocial-claim
-          subPath: {{ .Release.Namespace }}/sanesocial/properties
+          name: volume-claim
+          subPath: sanesocial/properties
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       securityContext: {}
       terminationGracePeriodSeconds: 0
       volumes:
-      - name: esocial-claim
+      - name: volume-claim
         persistentVolumeClaim:
-          claimName: esocial-claim
+          claimName: volume-claim
 status: {}
 {{- end }}

@@ -1,0 +1,18 @@
+{{- if .Values.esocial.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: esocial
+  labels:
+    io.kompose.service: esocial
+spec:
+  ports:
+  - name: "9970"
+    port: 9970
+    protocol: TCP
+    targetPort: 8778
+  selector:
+    io.kompose.service: esocial
+status:
+  loadBalancer: {}
+{{- end }}

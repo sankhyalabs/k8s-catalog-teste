@@ -1,0 +1,8 @@
+description: Sankhya-W
+icon: https://s3-sa-east-1.amazonaws.com/jiva-docker/rancher2/catalogIcon-sankhya-w.png
+home: https://www.sankhya.com.br
+name: sankhya-w
+version: 1.0
+maintainers:
+- email: highlander.dantas@sankhya.com.br
+  name: Highlander Dantas 

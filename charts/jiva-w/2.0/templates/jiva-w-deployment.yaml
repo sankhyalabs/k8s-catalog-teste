@@ -110,26 +110,26 @@ spec:
           privileged: true
         volumeMounts:
         - mountPath: /home/mgeweb/repositorio
-          name: jiva-w-claim
+          name: volume-claim
           subPath: {{ .Release.Namespace }}/repositorio/
         - mountPath: /home/mgeweb/SanNFe
-          name: jiva-w-claim
+          name: volume-claim
           subPath: {{ .Release.Namespace }}/SanNFe/
         - mountPath: /home/mgeweb/SankhyaW/Anexos
-          name: jiva-w-claim
+          name: volume-claim
           subPath: {{ .Release.Namespace }}/Anexos/
         - mountPath: /home/mgeweb/pacotes-sannfe/
-          name: jiva-w-claim
+          name: volume-claim
           subPath: {{ .Release.Namespace }}/pacotes/sannfe/
         - mountPath: /home/mgeweb/sankhyaw-dpm/pkgs
-          name: jiva-w-claim
+          name: volume-claim
           subPath: {{ .Release.Namespace }}/jiva-w/
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       securityContext: {}
       terminationGracePeriodSeconds: 0
       volumes:
-      - name: jiva-w-claim
+      - name: volume-claim
         persistentVolumeClaim:
-          claimName: jiva-w-claim
+          claimName: volume-claim
 status: {}
