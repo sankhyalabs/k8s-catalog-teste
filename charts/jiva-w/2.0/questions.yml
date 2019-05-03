@@ -9,9 +9,9 @@ questions:
   description: "Pacote que será instalado (será buscado no ftp-sankhya)"
   type: enum
   options: 
-    - "jiva-w_3.29b91.pkg"
-    - "jiva-w_3.28b272.pkg"
-    - "jiva-w_3.27b347.pkg"
+    - "jiva-w_3.30b49.pkg"
+    - "jiva-w_3.29b210.pkg"
+    - "jiva-w_3.28b374.pkg"
     - "outros..."
   required: true
   group: "Pacote para instalação"

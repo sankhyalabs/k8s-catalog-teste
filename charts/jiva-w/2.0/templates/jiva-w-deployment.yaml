@@ -32,15 +32,12 @@ spec:
           && /home/mgeweb/DPM/scripts/./visualvm.sh && sleep 10  && sed -i 's/<min-pool-size>100</<min-pool-size>10</g'
           /home/mgeweb/wildfly_producao/standalone/deployments/mge-ds.xml && sed -i
           's/<max-pool-size>100</<max-pool-size>50</g' /home/mgeweb/wildfly_producao/standalone/deployments/mge-ds.xml
-          && sleep 15; nohup /home/mgeweb/DPM/scripts/./sentry 2>&1 </dev/null & sleep
-          5 && echo 'y' && sleep 30 ; /home/mgeweb/wildfly_producao/bin/./standalone.sh
+          && sleep 30 ; /home/mgeweb/wildfly_producao/bin/./standalone.sh
           -Djape.lazy.init=true -Djape.lob.fields.as.lazy=true -Djape.ignore.ligacao.inconsistente=true
         command:
         - /bin/sh
         - -c
         env:
-        - name: APP
-          value: jiva-w
         - name: CLIENTE
           value: "{{ .Release.Namespace }}"
         - name: MEMORIA_JBOSS
@@ -52,8 +49,6 @@ spec:
         - name: PACOTE_JIVAW
           value: "{{ .Values.pacote.versionNew }}"
         {{- end }}
-        - name: PATH_LOG
-          value: "/home/mgeweb/wildfly_producao/standalone/log/server.log"
         - name: PORTA_BD_JIVAW
           value: "{{ .Values.banco.porta }}"
         - name: TIPO_BD
