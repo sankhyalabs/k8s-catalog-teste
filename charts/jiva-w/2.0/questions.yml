@@ -44,12 +44,14 @@ questions:
   label: "Porta do Banco de Dados"
   description: "Porta Padrão Oracle: 1521 - Porta Padrão SqlServer: 1433"
   type: string
+  default: "1521"
   required: true
   group: "Configurando o Banco de Dados"
 - variable: banco.sid
   label: "SID do Banco de Dados"
   description: "Sid Padrão Oracle: ORCL - Sid Padrão SqlServer: MYSQLSERVER"
   type: string
+  default: "ORCL"
   required: true
   group: "Configurando o Banco de Dados"
 - variable: banco.usuario

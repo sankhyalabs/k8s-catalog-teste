@@ -4,4 +4,4 @@
 
  Este template faz a criação de todos os artefatos necessários para o cliente utilizar o **Jiva-W**.
 
-## Obs: Essa versão cria um volume espeficio para cada **Workload**.
+Obs: Essa versão cria um volume espeficio para cada **Workloads**.
