@@ -41,7 +41,7 @@ spec:
         - name: PATH_LOG
           value: /home/mgeweb/sanesocial/log/server.log
         image: {{  .Values.imageRepository.esocial.image }}:{{  .Values.imageRepository.esocial.imageTag }}
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
         name: esocial
         resources: {}
         securityContext:

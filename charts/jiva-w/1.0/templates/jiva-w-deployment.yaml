@@ -78,7 +78,7 @@ spec:
               name: jiva-w
               key: banco-user 
         image: {{  .Values.imageRepository.jivaw.image }}:{{  .Values.imageRepository.jivaw.imageTag }}
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
         name: jiva-w
         livenessProbe:
           failureThreshold: 3

@@ -69,7 +69,7 @@ spec:
         - name: USUARIO_BD_SNKW
           value: "{{ .Values.banco.usuario }}"
         image: {{  .Values.imageRepository.sankhyaw.image }}:{{  .Values.imageRepository.sankhyaw.imageTag }}
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
         name: sankhya-w
         livenessProbe:
           failureThreshold: 3
