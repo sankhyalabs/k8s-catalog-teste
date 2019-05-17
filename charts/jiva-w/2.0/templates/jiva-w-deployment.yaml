@@ -33,7 +33,7 @@ spec:
           /home/mgeweb/wildfly_producao/standalone/deployments/mge-ds.xml && sed -i
           's/<max-pool-size>100</<max-pool-size>50</g' /home/mgeweb/wildfly_producao/standalone/deployments/mge-ds.xml
           && sleep 30 ; /home/mgeweb/wildfly_producao/bin/./standalone.sh
-          -Djape.lazy.init=true -Djape.lob.fields.as.lazy=true -Djape.ignore.ligacao.inconsistente=true
+          -Djape.lazy.init=true -Djape.lob.fields.as.lazy=true -Djape.ignore.ligacao.inconsistente=true -Dsankhyaw.schedule.disable=true
         command:
         - /bin/sh
         - -c
