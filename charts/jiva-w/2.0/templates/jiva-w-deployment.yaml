@@ -72,7 +72,7 @@ spec:
             secretKeyRef:
               name: jiva-w
               key: banco-user 
-        image: {{  .Values.imageRepository.jivaw.image }}:{{  .Values.imageRepository.jivaw.imageTag }}
+        image: {{  .Values.imageRepository.jivaw.image }}:v1.5
         imagePullPolicy: IfNotPresent
         name: jiva-w
         livenessProbe:
