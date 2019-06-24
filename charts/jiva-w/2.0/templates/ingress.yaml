@@ -6,6 +6,12 @@ metadata:
   name: ingress
 spec:
   rules:
+  - host: sas.{{ .Release.Namespace }}{{ .Values.loadBalancer.dns }}
+    http:
+      paths:
+      - backend:
+          serviceName: sas
+          servicePort: 10050
   {{- if .Values.loadBalancer.jivaw.enabled }}
   - host: {{ .Release.Namespace }}{{ .Values.loadBalancer.dns }}
     http:
