@@ -23,14 +23,14 @@ spec:
     spec:
       containers:
       - name: sas
-        image: {{  .Values.imageRepository.sas.image }}:{{  .Values.imageRepository.sas.imageTag }}
+        image: {{  .Values.imageRepository.sas.image }}:v1.5
         imagePullPolicy: IfNotPresent
         command: ["/bin/sh", "-c"]
         args:
         - sudo chown -R mgeweb:mgeweb  /home/mgeweb/pacotes-sas/ /tmp/ && java -jar /opt/DSM/docker-sas-manager.jar /SAS && sleep 5 && tar -xzf /tmp/SAS.tar.gz -C /tmp/ &&  sudo chown -R mgeweb:mgeweb /tmp/ /opt/SAS/* && sleep 5  && /opt/DSM/scripts/./run-sas.sh && sleep 2 && tail -f /opt/SAS/log/server*.log
         env: 
-        - name: HASDELPHI
-          value: "{{ .Values.sasdelphi.enabled }}"
+        - name: CLIENTE
+          value: "{{ .Release.Namespace }}"
         - name: PORTA_BD_JIVAW
           value: "{{ .Values.banco.porta }}"
         - name: SID_BD_JIVAW

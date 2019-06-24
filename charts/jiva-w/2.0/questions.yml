@@ -100,14 +100,6 @@ questions:
   group: "Configurando Memoria da Aplicação"
 
 # Outras Aplicações
-- variable: sasdelphi.enabled
-  label: "Cliente possui Delphi?"
-  description: "Caso seja marcado true o container do SAS não irá atualizar o parâmetro IPSERVACESS"
-  type: boolean
-  default: false
-  required: true
-  group: "Outras Aplicações"
-
 - variable: datasync.enabled
   label: "Cliente possui Datasync?"
   description: "Caso seja marcado true irá subir um container para o Data Sync"
