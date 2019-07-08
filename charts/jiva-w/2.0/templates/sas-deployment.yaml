@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: sas
-        image: {{  .Values.imageRepository.sas.image }}:v1.5
+        image: {{  .Values.imageRepository.sas.image }}:{{  .Values.imageRepository.sas.imageTag }}
         imagePullPolicy: IfNotPresent
         command: ["/bin/sh", "-c"]
         args:
