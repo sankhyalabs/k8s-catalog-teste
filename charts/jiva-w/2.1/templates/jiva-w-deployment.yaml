@@ -38,6 +38,8 @@ spec:
         - /bin/sh
         - -c
         env:
+        - name: HASSANFE
+          value: "{{ .Values.sannfe.enabled }}"
         - name: CLIENTE
           value: "{{ .Release.Namespace }}"
         - name: MEMORIA_JBOSS
@@ -55,6 +57,8 @@ spec:
           value: "{{ .Values.banco.tipo }}"
         - name: TIPO_SERVIDOR
           value: "WILDFLY"
+        - name: SID_BD_JIVAW
+          value: "{{ .Values.banco.sid }}"
         - name: SID_BD_JIVAW
           value: "{{ .Values.banco.sid }}"
         - name: IP_BD_JIVAW

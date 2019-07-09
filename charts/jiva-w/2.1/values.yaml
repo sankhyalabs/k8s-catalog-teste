@@ -4,7 +4,7 @@ imageRepository:
   jivaw:
     fullName: "jiva-w"
     image: "highlanderdantas/snk-jiva-w"
-    imageTag: "v1.5"
+    imageTag: "v1.6"
   sas:
     fullName: "sas"
     image: "highlanderdantas/sas"
@@ -43,6 +43,10 @@ memoria:
 
 ## Possui SAs
 sasdelphi:
+  enabled: false
+
+## Possui SanNfe
+sannfe:
   enabled: false
 
 ## Possui Jivaw

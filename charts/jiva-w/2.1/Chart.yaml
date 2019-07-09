@@ -1,0 +1,8 @@
+description: Jiva-W
+icon: https://s3-sa-east-1.amazonaws.com/jiva-docker/rancher2/catalogIcon-jiva-w.png
+home: https://www.jiva.com.br
+name: jiva-w
+version: 2.1
+maintainers:
+  - email: highlander.dantas@sankhya.com.br
+    name: Highlander Dantas
