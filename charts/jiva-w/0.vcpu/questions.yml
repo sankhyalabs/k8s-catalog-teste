@@ -117,8 +117,8 @@ questions:
   default: "100"
   required: true
   options:
-    - "100"
-    - "200"
+    - "100m"
+    - "200m"
   group: "Configurando Memoria e Cpu da Aplicação"
 
 - variable: imageRepository.storageClass
