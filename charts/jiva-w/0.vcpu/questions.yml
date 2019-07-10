@@ -100,26 +100,26 @@ questions:
   group: "Configurando Memoria e Cpu da Aplicação"
 
 - variable: cpu.jivaw.maximo
-  label: "Quantidade de memória máxima do container"
-  description: "Memória máxima que será alocada para o container."
-  type: string
+  label: "Quantidade de cpu máximo do container"
+  description: "Cpu máximo que será alocada para o container."
+  type: enum
   default: "1.2"
   required: true
-  group: "Configurando Memoria e Cpu da Aplicação"
   options: 
     - "1.2"
     - "1.6"
+  group: "Configurando Memoria e Cpu da Aplicação"
 
 - variable: cpu.jivaw.media
   label: "Quantidade de cpu media do container"
   description: "Cpu media que será alocada para o container."
-  type: string
+  type: enum
   default: "100"
   required: true
-  group: "Configurando Memoria e Cpu da Aplicação"
   options:
     - "100"
     - "200"
+  group: "Configurando Memoria e Cpu da Aplicação"
 
 - variable: imageRepository.storageClass
   label: "StorageClass para o Jiva-W"
