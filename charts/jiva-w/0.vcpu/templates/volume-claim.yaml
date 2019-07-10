@@ -1,0 +1,19 @@
+﻿apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: volume-claim
+  annotations:
+    {{- range $key, $value := .Values.annotations }}
+      {{ $key }}: {{ $value }}
+    {{- end }}
+  finalizers:
+  - kubernetes.io/pvc-protection
+  labels:
+    io.kompose.service: volume-claim
+spec:
+  accessModes:
+  - ReadWriteMany
+  storageClassName: "{{ .Values.imageRepository.storageClass }}"
+  resources:
+    requests:
+      storage: 3Gi
