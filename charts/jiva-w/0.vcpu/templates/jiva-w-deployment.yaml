@@ -104,7 +104,7 @@ spec:
             cpu:  {{ .Values.cpu.jivaw.maximo }}
           requests:
             memory: {{ .Values.memoria.jivaw.media }}Mi
-            cpu: {{ .Values.cpu.jivaw.media }}m
+            cpu: {{ .Values.cpu.jivaw.media }}
         securityContext:
           allowPrivilegeEscalation: true
           capabilities: {}

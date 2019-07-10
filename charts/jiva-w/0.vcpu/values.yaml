@@ -45,7 +45,7 @@ memoria:
 cpu:
   jivaw:
     maximo: "1.2"
-    media: "100"
+    media: "100m"
 
 
 ## Possui SAs
