@@ -114,7 +114,7 @@ questions:
   label: "Quantidade de cpu media do container"
   description: "Cpu media que será alocada para o container."
   type: enum
-  default: "100"
+  default: "100m"
   required: true
   options:
     - "100m"
