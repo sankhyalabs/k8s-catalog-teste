@@ -134,7 +134,7 @@ questions:
   label: "Chave SAS do cliente?"
   description: "Chave do cliente"
   type: strng
-  default: false
+  default: ""
   required: true
   group: "Outras Aplicações"
 
