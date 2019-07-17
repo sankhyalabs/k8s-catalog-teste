@@ -40,6 +40,8 @@ spec:
         env:
         - name: HASSANFE
           value: "{{ .Values.sannfe.enabled }}"
+        - name: CHAVESAS
+          value: "{{ .Values.sas.chaveCliente }}"
         - name: CLIENTE
           value: "{{ .Release.Namespace }}"
         - name: MEMORIA_JBOSS
@@ -125,6 +127,9 @@ spec:
         - mountPath: /home/mgeweb/sankhyaw-dpm/pkgs
           name: volume-claim
           subPath: {{ .Release.Namespace }}/jiva-w/
+        - mountPath: /home/mgeweb/.jboss_conf
+          name: volume-claim
+          subPath: {{ .Release.Namespace }}/jboss_config/
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       securityContext: {}

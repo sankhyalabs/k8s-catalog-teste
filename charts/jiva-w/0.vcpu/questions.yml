@@ -130,6 +130,14 @@ questions:
   group: "Configurando Memoria e Cpu da Aplicação"
 
 # Outras Aplicações
+- variable: sas.chaveCliente
+  label: "Chave SAS do cliente?"
+  description: "Chave do cliente"
+  type: strng
+  default: false
+  required: true
+  group: "Outras Aplicações"
+
 - variable: sasdelphi.enabled
   label: "Cliente possui Delphi?"
   description: "Caso seja marcado true o container do SAS não irá atualizar o parâmetro IPSERVACESS"

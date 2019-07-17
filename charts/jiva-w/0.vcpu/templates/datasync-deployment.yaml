@@ -29,7 +29,13 @@ spec:
         command: ["/bin/sh", "-c"]
         args:
         - sudo chown -R mgeweb:mgeweb /home/mgeweb/pacotes-datasync/ && java -jar /home/mgeweb/DDM/docker-datasync-manager.jar  && sleep 5 && sudo chown -R mgeweb:mgeweb /home/mgeweb/DataSync/ && /home/mgeweb/DDM/scripts/./run-datasync.sh && /home/mgeweb/DataSync/./datasync-service start && sleep 15 && tail -f /home/mgeweb/DataSync/log/server.log
-        resources: {}
+        resources:
+          limits:
+            memory: {{ .Values.memoria.datasync.maximo }}Mi
+            cpu: {{ .Values.memoria.datasync.maximo }}
+          requests:
+            memory: {{ .Values.memoria.datasync.media }}Mi
+            cpu: {{ .Values.memoria.datasync.media }}
         securityContext:
           allowPrivilegeEscalation: true
           capabilities: {}

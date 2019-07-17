@@ -4,7 +4,7 @@ imageRepository:
   jivaw:
     fullName: "jiva-w"
     image: "highlanderdantas/snk-jiva-w"
-    imageTag: "v1.6"
+    imageTag: "v1.6.1"
   sas:
     fullName: "sas"
     image: "highlanderdantas/sas"
@@ -34,17 +34,24 @@ banco:
   usuario: "System"
   senha: "tecsis"
 
-## Memoria Jivaw
+## Memoria 
 memoria:
   jivaw:
     jboss: "-Xms512m -Xmx1304m"
     maximo: "1536"
     media: "1024"
+  datasync:
+    maximo: "700"
+    media: "250"
 
-## Cpu Jivaw
+
+## Cpu 
 cpu:
   jivaw:
     maximo: "1.2"
+    media: "100m"
+  datasync:
+    maximo: "400m"
     media: "100m"
 
 
@@ -67,6 +74,11 @@ datasync:
 ## Possui Esocial
 esocial:
   enabled: false
+
+## Chave SAS
+sas:
+  chaveCliente: ""
+
 
 ## Configurações de url de acesso
 loadBalancer:
