@@ -133,7 +133,7 @@ questions:
 - variable: sas.chaveCliente
   label: "Chave SAS do cliente?"
   description: "Chave do cliente"
-  type: strng
+  type: string
   default: ""
   required: true
   group: "Outras Aplicações"
