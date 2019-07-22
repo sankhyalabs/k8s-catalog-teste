@@ -106,8 +106,8 @@ questions:
   default: "1.2"
   required: true
   options: 
-    - "1.2"
-    - "1.6"
+    - "600m"
+    - "700m"
   group: "Configurando Memoria e Cpu da Aplicação"
 
 - variable: cpu.jivaw.media
