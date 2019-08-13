@@ -48,7 +48,7 @@ memoria:
 ## Cpu 
 cpu:
   jivaw:
-    maximo: "600m"
+    maximo: "660m"
     media: "100m"
   datasync:
     maximo: "400m"

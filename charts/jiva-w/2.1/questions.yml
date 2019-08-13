@@ -9,9 +9,9 @@ questions:
   description: "Pacote que será instalado (será buscado no ftp-sankhya)"
   type: enum
   options: 
-    - "jiva-w_3.30b49.pkg"
-    - "jiva-w_3.29b210.pkg"
-    - "jiva-w_3.28b374.pkg"
+    - "jiva-w_3.31b159.pkg"
+    - "jiva-w_3.30b312.pkg"
+    - "jiva-w_3.29b449.pkg"
     - "outros..."
   required: true
   group: "Pacote para instalação"
@@ -74,7 +74,9 @@ questions:
   type: enum
   options:
     - "-Xms512m -Xmx1150m"
-    - "-Xms512m -Xmx1304m"
+    - "-Xms512m -Xmx1536m"
+    - "-Xms1024m -Xmx1536m"
+    - "-Xms1024m -Xmx2048m"
   required: true
   group: "Configurando Memoria da Aplicação"
 - variable: memoria.jivaw.maximo
