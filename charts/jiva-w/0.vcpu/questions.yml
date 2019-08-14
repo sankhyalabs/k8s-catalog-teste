@@ -79,9 +79,8 @@ questions:
   type: enum
   options:
     - "-Xms512m -Xmx1150m"
-    - "-Xms512m -Xmx1536m"
-    - "-Xms1024m -Xmx1536m"
-    - "-Xms1024m -Xmx2048m"
+    - "-Xms512m -Xmx1304m"
+    - "-Xms1024m -Xmx1804m"
   required: true
   group: "Configurando Memoria e Cpu da Aplicação"
 
