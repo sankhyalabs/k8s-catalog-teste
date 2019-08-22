@@ -1,0 +1,8 @@
+description: Junia-time
+icon: https://jvtst-repository.s3.amazonaws.com/junia-time.png
+home: https://web.app.jivacloud.com.br
+name: junia-time
+version: 1.0
+maintainers:
+- email: highlander.dantas@sankhya.com.br
+  name: Highlander Dantas 

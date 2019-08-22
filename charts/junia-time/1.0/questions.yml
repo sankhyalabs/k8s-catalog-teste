@@ -1,0 +1,37 @@
+categories:
+- Monitoramento
+labels:
+  io.rancher.certified: partner
+questions:
+# Configurações mongo
+- variable: mongo.url
+  label: "Ip do Mongo"
+  description: "Ip da maquina no qual está rodando o mongo"
+  type: string
+  required: true
+  group: "Configurações Mongo"
+
+- variable: mongo.user
+  label: "Usuário do banco mongo"
+  description: "Usuário do banco mongo"
+  type: string
+  required: true
+  group: "Configurações Mongo"
+
+- variable: mongo.password
+  label: "Senha do banco mongo"
+  description: "Senha do banco mongo"
+  type: string
+  required: true
+  group: "Configurações Mongo"
+# Configurando Webhook slack
+- variable: slack.webhook
+  label: "Webhook slack"
+  description: "url do serviço webhook"
+  type: string
+  required: true
+  group: "Configurando alertas por Slack"
+
+
+
+

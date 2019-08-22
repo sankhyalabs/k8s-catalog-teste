@@ -1,0 +1,56 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: junia-time
+  generation: 1
+  labels:
+    io.kompose.service: junia-time
+spec:
+  replicas: 1
+  selector:
+      matchLabels:
+        io.kompose.service: junia-time
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+      {{- range $key, $value := .Values.annotations }}
+        {{ $key }}: {{ $value }}
+      {{- end }}
+      labels:
+        io.kompose.service: junia-time
+    spec:
+      containers:
+      - name: junia-time
+        image: highlanderdantas/junia-time:1.0
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: MONGOURL
+          value: "{{ .Values.mongo.url }}"
+        - name: MONGOUSER
+          value: "{{ .Values.mongo.user }}"
+        - name: MONGOPASSWORD
+          value: "{{ .Values.mongo.password }}"
+        - name: WEBHOOK
+          value: "{{ .Values.slack.webhook }}"
+        livenessProbe:
+          failureThreshold: 3
+          initialDelaySeconds: 30
+          periodSeconds: 6
+          successThreshold: 1
+          tcpSocket:
+            port: 8880
+          timeoutSeconds: 6
+        readinessProbe:
+          failureThreshold: 3
+          initialDelaySeconds: 30
+          periodSeconds: 6
+          successThreshold: 1
+          tcpSocket:
+            port: 8880
+          timeoutSeconds: 6
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 0
+status: {}

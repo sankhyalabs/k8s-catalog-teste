@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: junia-time
+  labels:
+    io.kompose.service: junia-time
+spec:
+  ports:
+  - name: "port"
+    port: 8880
+    protocol: TCP
+    targetPort: 8880
+  selector:
+    io.kompose.service: junia-time
+status:
+  loadBalancer: {}

@@ -1,0 +1,11 @@
+# Mongo
+mongo:
+  url: "localhost"
+  user: "root"
+  password: "root"
+
+slack:
+  webhook: ""
+
+annotations: {}
+
