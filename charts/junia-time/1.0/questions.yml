@@ -9,7 +9,7 @@ questions:
   description: "Ip da maquina no qual está rodando o mongo"
   type: string
   required: true
-  group: "Configurações Mongo"
+  group: "Configurações"
 
 # Configurando Webhook slack
 - variable: slack.webhook
@@ -17,14 +17,14 @@ questions:
   description: "url do serviço webhook"
   type: string
   required: true
-  group: "Configurando alertas por Slack"
+  group: "Configurações"
 
 - variable: origin
   label: "Origin permitida"
   description: "Origin permitida"
   type: string
   required: true
-  group: "Configurando o cors
+  group: "Configurações"
 
 
 
