@@ -28,10 +28,8 @@ spec:
         env:
         - name: MONGOURL
           value: "{{ .Values.mongo.url }}"
-        - name: MONGOUSER
-          value: "{{ .Values.mongo.user }}"
-        - name: MONGOPASSWORD
-          value: "{{ .Values.mongo.password }}"
+        - name: ORIGIN
+          value: "{{ .Values.origin }}"
         - name: WEBHOOK
           value: "{{ .Values.slack.webhook }}"
         livenessProbe:

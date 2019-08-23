@@ -11,19 +11,6 @@ questions:
   required: true
   group: "Configurações Mongo"
 
-- variable: mongo.user
-  label: "Usuário do banco mongo"
-  description: "Usuário do banco mongo"
-  type: string
-  required: true
-  group: "Configurações Mongo"
-
-- variable: mongo.password
-  label: "Senha do banco mongo"
-  description: "Senha do banco mongo"
-  type: string
-  required: true
-  group: "Configurações Mongo"
 # Configurando Webhook slack
 - variable: slack.webhook
   label: "Webhook slack"
@@ -31,6 +18,14 @@ questions:
   type: string
   required: true
   group: "Configurando alertas por Slack"
+
+- variable: origin
+  label: "Origin permitida"
+  description: "Origin permitida"
+  type: string
+  required: true
+  group: "Configurando o cors
+
 
 
 
