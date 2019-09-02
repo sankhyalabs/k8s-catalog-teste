@@ -1,4 +1,4 @@
-﻿{{- if .Values.datasync.enabled }}
+{{- if .Values.datasync.enabled }}
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
