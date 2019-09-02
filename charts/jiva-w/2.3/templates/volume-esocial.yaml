@@ -1,0 +1,21 @@
+﻿{{- if .Values.esocial.enabled }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: volume-esocial
+  annotations:
+    {{- range $key, $value := .Values.annotations }}
+      {{ $key }}: {{ $value }}
+    {{- end }}
+  finalizers:
+  - kubernetes.io/pvc-protection
+  labels:
+    io.kompose.service: volume-esocial
+spec:
+  accessModes:
+  - ReadWriteOnce
+  storageClassName: "{{ .Values.imageRepository.storageClass }}"
+  resources:
+    requests:
+      storage: 1Gi
+{{- end }}

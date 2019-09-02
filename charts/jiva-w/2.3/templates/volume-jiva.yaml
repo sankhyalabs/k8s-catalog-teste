@@ -1,0 +1,19 @@
+﻿apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: volume-jiva
+  annotations:
+    {{- range $key, $value := .Values.annotations }}
+      {{ $key }}: {{ $value }}
+    {{- end }}
+  finalizers:
+  - kubernetes.io/pvc-protection
+  labels:
+    io.kompose.service: volume-jiva
+spec:
+  accessModes:
+  - ReadWriteOnce
+  storageClassName: "{{ .Values.imageRepository.storageClass }}"
+  resources:
+    requests:
+      storage: 3Gi
