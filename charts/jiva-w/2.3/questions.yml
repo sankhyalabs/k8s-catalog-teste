@@ -137,7 +137,6 @@ questions:
   description: "Chave do cliente"
   type: string
   default: ""
-  required: true
   group: "Outras Aplicações"
 
 - variable: sasdelphi.enabled
