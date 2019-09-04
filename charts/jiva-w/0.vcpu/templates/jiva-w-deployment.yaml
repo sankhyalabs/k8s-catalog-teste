@@ -31,7 +31,7 @@ spec:
           sudo chown -R mgeweb:mgeweb /home/mgeweb/SanNFe /home/mgeweb/wildfly_producao/standalone/log
           && /home/mgeweb/DPM/scripts/./visualvm.sh && sleep 10  && sed -i 's/<min-pool-size>100</<min-pool-size>10</g' && 
           /home/mgeweb/wildfly_producao/standalone/deployments/mge-ds.xml && sed -i
-          's/<max-pool-size>100</<max-pool-size>50</g' /home/mgeweb/wildfly_producao/standalone/deployments/mge-ds.xml
+          's/<max-pool-size>100</<max-pool-size></g' /home/mgeweb/wildfly_producao/standalone/deployments/mge-ds.xml
           && sleep 30 ; /home/mgeweb/wildfly_producao/bin/./standalone.sh
           -Djape.lazy.init=true -Djape.lob.fields.as.lazy=true -Djape.ignore.ligacao.inconsistente=true -Dsankhyaw.schedule.disable=true
         command:
