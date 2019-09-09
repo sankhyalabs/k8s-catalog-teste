@@ -43,6 +43,9 @@ memoria:
   datasync:
     maximo: "700"
     media: "250"
+  sas:
+    maximo: "400"
+    media: "100"
 
 
 ## Cpu 
@@ -52,6 +55,9 @@ cpu:
     media: "100m"
   datasync:
     maximo: "400m"
+    media: "100m"
+  sas:
+    maximo: "150m"
     media: "100m"
 
 

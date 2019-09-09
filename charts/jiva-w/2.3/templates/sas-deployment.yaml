@@ -70,6 +70,13 @@ spec:
           tcpSocket:
             port: 10050
           timeoutSeconds: 6
+        resources:
+          limits:
+            memory: {{ .Values.memoria.sas.maximo }}Mi
+            cpu:  {{ .Values.cpu.sas.maximo }}
+          requests:
+            memory: {{ .Values.memoria.sas.media }}Mi
+            cpu: {{ .Values.cpu.sas.media }}
         volumeMounts:
         - mountPath: /home/mgeweb/pacotes-sas/
           name: volume-sas
