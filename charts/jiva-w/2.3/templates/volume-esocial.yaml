@@ -17,5 +17,5 @@ spec:
   storageClassName: "{{ .Values.imageRepository.storageClass }}"
   resources:
     requests:
-      storage: "{{ .Values.volume.esocial.size }}"
+      storage: {{ .Values.volume.esocial.size }}Gi
 {{- end }}

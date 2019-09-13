@@ -17,5 +17,5 @@ spec:
   storageClassName: "{{ .Values.imageRepository.storageClass }}"
   resources:
     requests:
-      storage: "{{ .Values.volume.datasync.size }}"
+      storage: {{ .Values.volume.datasync.size }}Gi
 {{- end }}
