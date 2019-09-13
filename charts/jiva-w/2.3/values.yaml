@@ -60,6 +60,16 @@ cpu:
     maximo: "150m"
     media: "100m"
 
+volume:
+  jivaw:
+    size: 3Gi
+  sas: 
+    size: 1Gi
+  datasync:
+    size: 1Gi
+  esocial:
+    size: 2Gi
+
 
 ## Possui SAs
 sasdelphi:

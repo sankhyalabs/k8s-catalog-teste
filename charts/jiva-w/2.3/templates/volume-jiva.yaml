@@ -16,4 +16,4 @@ spec:
   storageClassName: "{{ .Values.imageRepository.storageClass }}"
   resources:
     requests:
-      storage: 3Gi
+      storage: "{{ .Values.volume.jivaw.size }}"
