@@ -1,0 +1,70 @@
+{{- if .Values.esocial.enabled }}
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: esocial
+  generation: 1
+  labels:
+    io.kompose.service: esocial
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      io.kompose.service: esocial
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+      {{- range $key, $value := .Values.annotations }}
+        {{ $key }}: {{ $value }}
+      {{- end }}
+      labels:
+        io.kompose.service: esocial
+    spec:
+      containers:
+      - args:
+        - java -jar /home/mgeweb/DSEM/docker-sanesocial-manager.jar && sleep 5 &&
+          /home/mgeweb/DSEM/scripts/./run-sanesocial.sh && sleep 15 && /home/mgeweb/sanesocial/./sanesocial-service
+          start && sleep 15 && nohup /home/mgeweb/DSEM/scripts/./sentry  2>&1 </dev/null
+          & sleep 15 && echo 'y' && sleep 15 && tail -f /home/mgeweb/sanesocial/log/server.log
+        command:
+        - /bin/sh
+        - -c
+        env:
+        - name: APP
+          value: esocial
+        - name: CLIENTE
+          value: "{{ .Release.Namespace }}"
+        - name: PATH_LOG
+          value: /home/mgeweb/sanesocial/log/server.log
+        image: {{  .Values.imageRepository.esocial.image }}:{{  .Values.imageRepository.esocial.imageTag }}
+        imagePullPolicy: IfNotPresent
+        name: esocial
+        resources: {}
+        securityContext:
+          allowPrivilegeEscalation: true
+          capabilities: {}
+          privileged: true
+        volumeMounts:
+        - mountPath: /home/mgeweb/sanesocial/conf
+          name: volume-esocial
+          subPath: {{ .Release.Namespace }}/sanesocial/conf
+        - mountPath: /home/mgeweb/sanesocial/certificados
+          name: volume-esocial
+          subPath: {{ .Release.Namespace }}/sanesocial/certificados
+        - mountPath: /home/mgeweb/sanesocial/properties
+          name: volume-esocial
+          subPath: {{ .Release.Namespace }}/sanesocial/properties
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      securityContext: {}
+      terminationGracePeriodSeconds: 0
+      volumes:
+      - name: volume-esocial
+        persistentVolumeClaim:
+          claimName: volume-esocial
+status: {}
+{{- end }}

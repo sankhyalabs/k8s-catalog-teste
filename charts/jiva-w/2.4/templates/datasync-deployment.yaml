@@ -1,0 +1,80 @@
+{{- if .Values.datasync.enabled }}
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: datasync
+  generation: 1
+  labels:
+    io.kompose.service: datasync
+spec:
+  replicas: 1
+  selector:
+    matchLabels: 
+      io.kompose.service: datasync
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+      {{- range $key, $value := .Values.annotations }}
+        {{ $key }}: {{ $value }}
+      {{- end }}
+      labels:
+        io.kompose.service: datasync
+    spec:
+      containers:
+      - name: datasync
+        image: {{ .Values.imageRepository.datasync.image }}:{{ .Values.imageRepository.datasync.imageTag }}
+        imagePullPolicy: IfNotPresent
+        command: ["/bin/sh", "-c"]
+        args:
+        - sudo chown -R mgeweb:mgeweb /home/mgeweb/pacotes-datasync/ && java -jar /home/mgeweb/DDM/docker-datasync-manager.jar  && sleep 5 && sudo chown -R mgeweb:mgeweb /home/mgeweb/DataSync/ && /home/mgeweb/DDM/scripts/./run-datasync.sh && /home/mgeweb/DataSync/./datasync-service start && sleep 15 && tail -f /home/mgeweb/DataSync/log/server.log
+        resources:
+          limits:
+            memory: {{ .Values.memoria.datasync.maximo }}Mi
+            cpu: {{ .Values.memoria.datasync.maximo }}
+          requests:
+            memory: {{ .Values.memoria.datasync.media }}Mi
+            cpu: {{ .Values.memoria.datasync.media }}
+        securityContext:
+          allowPrivilegeEscalation: true
+          capabilities: {}
+          privileged: true
+        volumeMounts:
+        - mountPath: /home/mgeweb/DataSync/conf
+          name: volume-datasync
+          subPath: {{ .Release.Namespace }}/datasync/conf
+        - mountPath: /home/mgeweb/DataSync/email
+          name: volume-datasync
+          subPath: {{ .Release.Namespace }}/datasync/email
+        - mountPath: /home/mgeweb/DataSync/exported
+          name: volume-datasync
+          subPath: {{ .Release.Namespace }}/datasync/exported
+        - mountPath: /home/mgeweb/DataSync/filetransfer_home
+          name: volume-datasync
+          subPath: {{ .Release.Namespace }}/datasync/filetransfer_home
+        - mountPath: /home/mgeweb/DataSync/processed
+          name: volume-datasync
+          subPath: {{ .Release.Namespace }}/datasync/processed
+        - mountPath: /home/mgeweb/DataSync/sync
+          name: volume-datasync
+          subPath: {{ .Release.Namespace }}/datasync/sync
+        - mountPath: /home/mgeweb/DataSync/tracking
+          name: volume-datasync
+          subPath: {{ .Release.Namespace }}/datasync/tracking
+        - mountPath: /home/mgeweb/DataSync/work
+          name: volume-datasync
+          subPath: {{ .Release.Namespace }}/datasync/work
+        - mountPath: /home/mgeweb/pacotes-datasync/
+          name: volume-datasync
+          subPath: {{ .Release.Namespace }}/datasync/pacotes/datasync
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      securityContext: {}
+      terminationGracePeriodSeconds: 0
+      volumes:
+      - name: volume-datasync
+        persistentVolumeClaim:
+          claimName: volume-datasync
+status: {}
+{{- end }}

@@ -1,0 +1,107 @@
+# Imagens Hub e Versões
+imageRepository:
+  storageClass: "volume-claim"
+  jivaw:
+    fullName: "jiva-w"
+    image: "highlanderdantas/snk-jiva-w"
+    imageTag: "v2.0"
+  sas:
+    fullName: "sas"
+    image: "highlanderdantas/sas"
+    imageTag: "v2.0"
+  datasync:
+    fullName: "datasync"
+    image: "highlanderdantas/datasync"
+    imageTag: "v2.0"
+  esocial:
+    fullName: "esocial"
+    image: "highlanderdantas/esocial"
+    imageTag: "v2.0"
+
+annotations: {}
+
+## Pacote para Instalação
+pacote:
+  versao: "jiva-w_3.29b91.pkg"
+  versionNew: ""
+
+## Dados do Banco de Dados
+banco:
+  tipo: "ORACLE"
+  ip: ""
+  porta: "1521"
+  sid: "ORCL"
+  usuario: "System"
+  senha: "tecsis"
+
+## Memoria 
+memoria:
+  jivaw:
+    jboss: "-Xms512m -Xmx1304m"
+    maximo: "1536"
+    media: "1024"
+  datasync:
+    maximo: "700"
+    media: "250"
+  sas:
+    maximo: "400"
+    media: "100"
+
+
+## Cpu 
+cpu:
+  jivaw:
+    maximo: "550m"
+    media: "100m"
+  datasync:
+    maximo: "400m"
+    media: "100m"
+  sas:
+    maximo: "150m"
+    media: "100m"
+
+volume:
+  jivaw:
+    size: 3
+  sas: 
+    size: 1
+  datasync:
+    size: 1
+  esocial:
+    size: 2
+
+
+## Possui SAs
+sasdelphi:
+  enabled: false
+
+## Possui SanNfe
+sannfe:
+  enabled: false
+
+## Possui Jivaw
+jivaw:
+  enabled: true
+
+## Possui Datasync
+datasync:
+  enabled: false
+
+## Possui Esocial
+esocial:
+  enabled: false
+
+## Chave SAS
+sas:
+  chaveCliente: ""
+
+
+## Configurações de url de acesso
+loadBalancer:
+  dns: .teste.jivacloud.com.br
+  jivaw:
+    enabled: false
+  datasync:
+    enabled: false
+  esocial:
+    enabled: false

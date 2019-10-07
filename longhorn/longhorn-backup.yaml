@@ -1,0 +1,10 @@
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: longhorn-backup
+provisioner: rancher.io/longhorn
+parameters:
+  numberOfReplicas: "1"
+  staleReplicaTimeout: "30"
+  fromBackup: ""
+  recurringJobs: '[{"name":"backup", "task":"backup", "cron":"0 20 ? * FRI", "retain":2}]'
