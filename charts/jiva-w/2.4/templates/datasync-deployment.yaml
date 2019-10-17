@@ -32,10 +32,10 @@ spec:
         resources:
           limits:
             memory: {{ .Values.memoria.datasync.maximo }}Mi
-            cpu: {{ .Values.memoria.datasync.maximo }}
+            cpu: {{ .Values.cpu.datasync.maximo }}
           requests:
             memory: {{ .Values.memoria.datasync.media }}Mi
-            cpu: {{ .Values.memoria.datasync.media }}
+            cpu: {{ .Values.cpu.datasync.media }}
         securityContext:
           allowPrivilegeEscalation: true
           capabilities: {}
