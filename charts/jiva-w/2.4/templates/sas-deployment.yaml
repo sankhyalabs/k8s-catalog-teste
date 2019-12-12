@@ -28,7 +28,9 @@ spec:
         command: ["/bin/sh", "-c"]
         args:
         - sudo chown -R mgeweb:mgeweb  /home/mgeweb/pacotes-sas/ /tmp/ && java -jar /opt/DSM/docker-sas-manager.jar /SAS && sleep 5 && tar -xzf /tmp/SAS.tar.gz -C /tmp/ &&  sudo chown -R mgeweb:mgeweb /tmp/ /opt/SAS/* && sleep 5  && /opt/DSM/scripts/./run-sas.sh && sleep 10 && tail -f /opt/SAS/log/server*.log
-        env: 
+        env:
+        - name: JAVA_TOOL_OPTIONS
+          value: "{{ .Values.jboss.envs }}"
         - name: HASDELPHI
           value: "{{ .Values.sasdelphi.enabled }}"
         - name: CLIENTE

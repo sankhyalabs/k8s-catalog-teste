@@ -34,6 +34,8 @@ spec:
         - /bin/sh
         - -c
         env:
+        - name: JAVA_TOOL_OPTIONS
+          value: "{{ .Values.jboss.envs }}"
         - name: APP
           value: esocial
         - name: CLIENTE

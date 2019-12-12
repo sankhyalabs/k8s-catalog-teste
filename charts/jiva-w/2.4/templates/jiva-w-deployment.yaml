@@ -37,6 +37,8 @@ spec:
         - /bin/sh
         - -c
         env:
+        - name: JAVA_TOOL_OPTIONS
+          value: "{{ .Values.jboss.envs }}"
         - name: HASSANFE
           value: "{{ .Values.sannfe.enabled }}"
         - name: CHAVESAS

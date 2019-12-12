@@ -17,6 +17,9 @@ imageRepository:
     fullName: "esocial"
     image: "highlanderdantas/esocial"
     imageTag: "v2.0"
+  
+jboss:
+  envs: -Duser.language=pt -Duser.country=BR -Dsun.jnu.encoding=ISO-8859-1 -Dfile.encoding=ISO-8859-1
 
 annotations: {}
 
@@ -41,7 +44,7 @@ memoria:
     maximo: "1536"
     media: "1024"
   datasync:
-    maximo: "700"
+    maximo: "1024"
     media: "250"
   sas:
     maximo: "400"

@@ -27,6 +27,9 @@ spec:
         image: {{ .Values.imageRepository.datasync.image }}:{{ .Values.imageRepository.datasync.imageTag }}
         imagePullPolicy: IfNotPresent
         command: ["/bin/sh", "-c"]
+        env:
+        - name: JAVA_TOOL_OPTIONS
+          value: "{{ .Values.jboss.envs }}"
         args:
         - sudo chown -R mgeweb:mgeweb /home/mgeweb/pacotes-datasync/ && java -jar /home/mgeweb/DDM/docker-datasync-manager.jar  && sleep 5 && sudo chown -R mgeweb:mgeweb /home/mgeweb/DataSync/ && /home/mgeweb/DDM/scripts/./run-datasync.sh && /home/mgeweb/DataSync/./datasync-service start && sleep 15 && tail -f /home/mgeweb/DataSync/log/server.log
         resources:
