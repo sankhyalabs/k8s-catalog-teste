@@ -92,6 +92,7 @@ spec:
       terminationGracePeriodSeconds: 0
       volumes:
       - name: volume-sas
-        hostPath: /home/mgeweb/compartilhado
-        type: Directory
+        hostPath: 
+          path: /home/mgeweb/compartilhado
+          type: Directory
 status: {}
