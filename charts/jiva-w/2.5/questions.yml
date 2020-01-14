@@ -123,29 +123,7 @@ questions:
     - "200m"
   group: "Configurando Memoria e Cpu da Aplicação"
 
-- variable: imageRepository.storageClass
-  label: "StorageClass para o Jiva-W"
-  description: "StorageClass para o Jiva-W"
-  type: storageclass
-  default: ""
-  required: true
-  group: "Configurando Memoria e Cpu da Aplicação"
 
-- variable: volume.jivaw.size
-  label: "Tamanho do volume para o Jiva-W"
-  description: "Tamanho do volume para o Jiva-W"
-  type: string
-  default: ""
-  required: true
-  group: "Configurando Memoria e Cpu da Aplicação"
-
-- variable: volume.sas.size
-  label: "Tamanho do volume para o SAS"
-  description: "Tamanho do volume para o SAS"
-  type: string
-  default: ""
-  required: true
-  group: "Configurando Memoria e Cpu da Aplicação"
 
 # Outras Aplicações
 - variable: sas.chaveCliente
