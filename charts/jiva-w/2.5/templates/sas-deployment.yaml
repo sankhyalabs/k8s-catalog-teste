@@ -81,11 +81,9 @@ spec:
             cpu: {{ .Values.cpu.sas.media }}
         volumeMounts:
         - mountPath: /home/mgeweb/pacotes-sas/
-          name: volume-sas
-          subPath: pacotes/sas
+          name: volume-pacotesas
         - mountPath: /opt/SAS/licenca
           name: volume-sas
-          subPath: {{ .Release.Namespace }}/SAS/
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       securityContext: {}
@@ -93,6 +91,10 @@ spec:
       volumes:
       - name: volume-sas
         hostPath: 
-          path: /home/mgeweb/compartilhado
-          type: Directory
+          path: /home/mgeweb/compartilhado/{{ .Release.Namespace }}/sas/
+          type: DirectoryOrCreate
+      - name: volume-pacotesas
+        hostPath: 
+          path: /home/mgeweb/compartilhado/pacotesas/
+          type: DirectoryOrCreate
 status: {}

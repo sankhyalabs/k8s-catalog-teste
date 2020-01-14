@@ -114,44 +114,29 @@ spec:
           privileged: true
         volumeMounts:
         - mountPath: /home/mgeweb/repositorio
-          name: volume-repositorio
+          name: volume-jiva
+          subPath: {{ .Release.Namespace }}/repositorio/
         - mountPath: /home/mgeweb/SanNFe
-          name: volume-sannfe
+          name: volume-jiva
+          subPath: {{ .Release.Namespace }}/SanNFe/
         - mountPath: /home/mgeweb/SankhyaW/Anexos
-          name: volume-anexos
+          name: volume-jiva
+          subPath: {{ .Release.Namespace }}/Anexos/
         - mountPath: /home/mgeweb/pacotes-sannfe/
-          name: volume-pacotessanfe
+          name: volume-jiva
+          subPath: {{ .Release.Namespace }}/pacotes/sannfe/
         - mountPath: /home/mgeweb/sankhyaw-dpm/pkgs
-          name: volume-pacotesjivaw
+          name: volume-jiva
+          subPath: {{ .Release.Namespace }}/jiva-w/
         - mountPath: /home/mgeweb/.jboss_conf
-          name: volume-jbossconfig
+          name: volume-jiva
+          subPath: {{ .Release.Namespace }}/jboss_config/
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       securityContext: {}
       terminationGracePeriodSeconds: 0
       volumes:
-      - name: volume-repositorio
-        hostPath: 
-          path: /home/mgeweb/compartilhado/{{ .Release.Namespace }}/jivaw/repositorio/
-          type: DirectoryOrCreate
-      - name: volume-sannfe
-        hostPath: 
-          path: /home/mgeweb/compartilhado/{{ .Release.Namespace }}/jivaw/SanNFe/
-          type: DirectoryOrCreate
-      - name: volume-anexos
-        hostPath: 
-          path: /home/mgeweb/compartilhado/{{ .Release.Namespace }}/jivaw/Anexos/
-          type: DirectoryOrCreate
-      - name: volume-pacotessanfe
-        hostPath: 
-          path: /home/mgeweb/compartilhado/{{ .Release.Namespace }}/jivaw/pacotes/sannfe/
-          type: DirectoryOrCreate
-      - name: volume-pacotesjivaw
-        hostPath: 
-          path: /home/mgeweb/compartilhado/pacotesjivaw/
-          type: DirectoryOrCreate
-      - name: volume-jbossconfig
-        hostPath: 
-          path: /home/mgeweb/compartilhado/{{ .Release.Namespace }}/jivaw/jboss_config/
-          type: DirectoryOrCreate
+      - name: volume-jiva
+        persistentVolumeClaim:
+          claimName: volume-jiva
 status: {}
