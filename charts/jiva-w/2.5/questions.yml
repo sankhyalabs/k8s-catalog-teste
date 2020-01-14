@@ -1,0 +1,219 @@
+categories:
+- jiva
+labels:
+  io.rancher.certified: partner
+questions:
+# Pacote Instalação
+- variable: pacote.versao
+  label: "Escolha a versão"
+  description: "Pacote que será instalado (será buscado no ftp-sankhya)"
+  type: enum
+  options: 
+    - "jiva-w_3.31b159.pkg"
+    - "jiva-w_3.30b312.pkg"
+    - "jiva-w_3.29b449.pkg"
+    - "outros..."
+  required: true
+  group: "Pacote para instalação"
+  show_subquestion_if: "outros..."
+  subquestions:
+  - variable: pacote.versionNew
+    label: Digite a nova versão
+    type: string
+    required: true
+    description: "Pacote que será instalado (será buscado no ftp-sankhya)"
+
+# Banco de Dados
+- variable: banco.tipo
+  label: "Tipo do Banco de Dados"
+  description: "Tipo do Banco Dados"
+  type: enum
+  default: "ORACLE"
+  required: true
+  group: "Configurando o Banco de Dados"
+  options:
+    - "ORACLE"
+    - "SQLSERVER"
+
+- variable: banco.ip
+  label: "IP do Banco de Dados"
+  description: "IP no qual está instalado o Banco de Dados"
+  type: string
+  required: true
+  group: "Configurando o Banco de Dados"
+
+- variable: banco.porta
+  label: "Porta do Banco de Dados"
+  description: "Porta Padrão Oracle: 1521 - Porta Padrão SqlServer: 1433"
+  type: string
+  default: "1521"
+  required: true
+  group: "Configurando o Banco de Dados"
+
+- variable: banco.sid
+  label: "SID do Banco de Dados"
+  description: "Sid Padrão Oracle: ORCL - Sid Padrão SqlServer: MYSQLSERVER"
+  type: string
+  default: "ORCL"
+  required: true
+  group: "Configurando o Banco de Dados"
+
+- variable: banco.usuario
+  label: "Usuário do Banco de Dados"
+  description: "Usuário do Banco de Dados"
+  type: string
+  required: true
+  group: "Configurando o Banco de Dados"
+
+- variable: banco.senha
+  label: "Senha do Banco de Dados"
+  description: "Senha do Banco de Dados"
+  type: password
+  required: true
+  group: "Configurando o Banco de Dados"
+
+# Memoria da Aplicação e Volume
+- variable: memoria.jivaw.jboss
+  label: "Memória de inicialização do WildFly"
+  description: "Memória de inicialização do WildFly"
+  type: enum
+  options:
+    - "-Xms512m -Xmx1150m"
+    - "-Xms512m -Xmx1304m"
+    - "-Xms1024m -Xmx1804m"
+  required: true
+  group: "Configurando Memoria e Cpu da Aplicação"
+
+- variable: memoria.jivaw.maximo
+  label: "Quantidade de memória máxima do container"
+  description: "Memória máxima que será alocada para o container."
+  type: string
+  default: "1536"
+  required: true
+  group: "Configurando Memoria e Cpu da Aplicação"
+
+- variable: memoria.jivaw.media
+  label: "Quantidade de memória media do container"
+  description: "Memória media que será alocada para o container."
+  type: string
+  default: "1024"
+  required: true
+  group: "Configurando Memoria e Cpu da Aplicação"
+
+- variable: cpu.jivaw.maximo
+  label: "Quantidade de cpu máximo do container"
+  description: "Cpu máximo que será alocada para o container."
+  type: enum
+  default: "550m"
+  required: true
+  options:
+    - "550m"
+    - "600m"
+    - "700m"
+  group: "Configurando Memoria e Cpu da Aplicação"
+
+- variable: cpu.jivaw.media
+  label: "Quantidade de cpu media do container"
+  description: "Cpu media que será alocada para o container."
+  type: enum
+  default: "100m"
+  required: true
+  options:
+    - "100m"
+    - "200m"
+  group: "Configurando Memoria e Cpu da Aplicação"
+
+- variable: imageRepository.storageClass
+  label: "StorageClass para o Jiva-W"
+  description: "StorageClass para o Jiva-W"
+  type: storageclass
+  default: ""
+  required: true
+  group: "Configurando Memoria e Cpu da Aplicação"
+
+- variable: volume.jivaw.size
+  label: "Tamanho do volume para o Jiva-W"
+  description: "Tamanho do volume para o Jiva-W"
+  type: string
+  default: ""
+  required: true
+  group: "Configurando Memoria e Cpu da Aplicação"
+
+- variable: volume.sas.size
+  label: "Tamanho do volume para o SAS"
+  description: "Tamanho do volume para o SAS"
+  type: string
+  default: ""
+  required: true
+  group: "Configurando Memoria e Cpu da Aplicação"
+
+# Outras Aplicações
+- variable: sas.chaveCliente
+  label: "Chave SAS do cliente?"
+  description: "Chave do cliente"
+  type: string
+  default: ""
+  group: "Outras Aplicações"
+
+- variable: sasdelphi.enabled
+  label: "Cliente possui Delphi?"
+  description: "Caso seja marcado true o container do SAS não irá atualizar o parâmetro IPSERVACESS"
+  type: boolean
+  default: false
+  required: true
+  group: "Outras Aplicações"
+
+- variable: sannfe.enabled
+  label: "Habilitar SanNfe?"
+  description: "Caso seja marcado true irá realizar o download do SanNfe "
+  type: boolean
+  default: false
+  required: true
+  group: "Outras Aplicações"
+
+- variable: datasync.enabled
+  label: "Cliente possui Datasync?"
+  description: "Caso seja marcado true irá subir um container para o Data Sync"
+  type: boolean
+  default: false
+  required: true
+  group: "Outras Aplicações"
+
+- variable: esocial.enabled
+  label: "Cliente possui Esocial?"
+  description: "Caso seja marcado true irá subir um container com o SanESocial"
+  type: boolean
+  default: false
+  required: true
+  group: "Outras Aplicações"
+
+# Load Balancer
+- variable: loadBalancer.jivaw.enabled
+  label: "Definir hostname do Jivaw para o loadBalancer"
+  description: "Definir hostname do Jivaw para o loadBalancer"
+  type: boolean
+  default: false
+  required: true
+  group: "Load Balancing"
+
+- variable: loadBalancer.datasync.enabled
+  label: "Definir hostname do DataSync para o loadBalancer"
+  description: "Definir hostname do DataSync para o loadBalancer"
+  type: boolean
+  show_if: "datasync.enabled=true"
+  default: false
+  required: true
+  group: "Load Balancing"
+
+- variable: loadBalancer.esocial.enabled
+  label: "Definir hostname do Esocial para o loadBalancer"
+  description: "Definir hostname do Esocial para o loadBalancer"
+  type: boolean
+  show_if: "esocial.enabled=true"
+  default: false
+  required: true
+  group: "Load Balancing"
+
+
+
+
