@@ -62,6 +62,10 @@ spec:
           name: volume-work
         - mountPath: /home/mgeweb/pacotes-datasync/
           name: volume-pacotesdatasync
+      dnsConfig:
+        options:
+        - name: ndots
+          value: "0"
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       securityContext: {}

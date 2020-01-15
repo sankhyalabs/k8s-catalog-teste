@@ -125,6 +125,10 @@ spec:
           name: volume-pacotesjivaw
         - mountPath: /home/mgeweb/.jboss_conf
           name: volume-jbossconfig
+      dnsConfig:
+        options:
+        - name: ndots
+          value: "0"
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       securityContext: {}

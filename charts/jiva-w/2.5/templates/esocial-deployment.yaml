@@ -59,6 +59,10 @@ spec:
           name: volume-properties
         - mountPath: /home/mgeweb/versoes
           name: volume-pacotesocial
+      dnsConfig:
+        options:
+        - name: ndots
+          value: "0"
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       securityContext: {}

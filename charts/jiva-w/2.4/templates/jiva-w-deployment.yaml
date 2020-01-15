@@ -115,6 +115,7 @@ spec:
         volumeMounts:
         - mountPath: /home/mgeweb/repositorio
           name: volume-jiva
+          subPath: {{ .Release.Namespace }}/repositorio/
         - mountPath: /home/mgeweb/SanNFe
           name: volume-jiva
           subPath: {{ .Release.Namespace }}/SanNFe/
