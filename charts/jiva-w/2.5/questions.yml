@@ -166,7 +166,7 @@ questions:
     - ".monitoring.jivacloud.com.br"
     - ".jivacloud.com.br"
     - "outros..."
-  group: "Configurando Memoria e Cpu da Aplicação"
+  group: "Load Balancing"
   show_subquestion_if: "outros..."
   subquestions:
   - variable: loadBalancer.dnsNew
