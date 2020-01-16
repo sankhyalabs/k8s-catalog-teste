@@ -8,7 +8,7 @@ imageRepository:
   sas:
     fullName: "sas"
     image: "highlanderdantas/sas"
-    imageTag: "v2.0"
+    imageTag: "v2.5"
   datasync:
     fullName: "datasync"
     image: "highlanderdantas/datasync"
