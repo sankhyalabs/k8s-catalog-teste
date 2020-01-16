@@ -7,7 +7,11 @@ metadata:
 spec:
   rules:
   {{- if .Values.loadBalancer.jivaw.enabled }}
+  {{- if not .Values.loadBalancer.dnsNew }}
   - host: {{ .Release.Namespace }}{{ .Values.loadBalancer.dns }}
+  {{- else }}
+  - host: {{ .Release.Namespace }}{{ .Values.loadBalancer.dnsNew }}
+  {{- end }}
     http:
       paths:
       - backend:
@@ -15,7 +19,11 @@ spec:
           servicePort: 8080
   {{- end }}
   {{- if .Values.loadBalancer.datasync.enabled }}
+  {{- if not .Values.loadBalancer.dnsNew }}
   - host: datasync-{{ .Release.Namespace }}{{ .Values.loadBalancer.dns }}
+  {{- else }}
+  - host: datasync-{{ .Release.Namespace }}{{ .Values.loadBalancer.dnsNew }}
+  {{- end }}
     http:
       paths:
       - backend:
@@ -23,7 +31,11 @@ spec:
           servicePort: 8080
   {{- end }}
   {{- if .Values.loadBalancer.esocial.enabled }}
+  {{- if not .Values.loadBalancer.dnsNew }}
   - host: esocial-{{ .Release.Namespace }}{{ .Values.loadBalancer.dns }}
+  {{- else }}
+  - host: esocial-{{ .Release.Namespace }}{{ .Values.loadBalancer.dnsNew }}
+  {{- end }}
     http:
       paths:
       - backend:

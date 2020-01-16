@@ -165,7 +165,15 @@ questions:
     - ".orcl.jivacloud.com.br"
     - ".monitoring.jivacloud.com.br"
     - ".jivacloud.com.br"
+    - "outros..."
   group: "Configurando Memoria e Cpu da Aplicação"
+  show_subquestion_if: "outros..."
+  subquestions:
+  - variable: loadBalancer.dnsNew
+    label: Digite novo dns
+    type: string
+    required: true
+    description: "Dns do Load balancer, ex: .jivacloud.com.br"
 
 - variable: loadBalancer.jivaw.enabled
   label: "Definir hostname do Jivaw para o loadBalancer"
