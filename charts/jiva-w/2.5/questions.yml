@@ -72,18 +72,6 @@ questions:
   required: true
   group: "Configurando o Banco de Dados"
 
-# Memoria da Aplicação e Volume
-- variable: memoria.jivaw.jboss
-  label: "Memória de inicialização do WildFly"
-  description: "Memória de inicialização do WildFly"
-  type: enum
-  options:
-    - "-Xms512m -Xmx1150m"
-    - "-Xms512m -Xmx1304m"
-    - "-Xms1024m -Xmx1804m"
-  required: true
-  group: "Configurando Memoria e Cpu da Aplicação"
-
 - variable: memoria.jivaw.maximo
   label: "Quantidade de memória máxima do container"
   description: "Memória máxima que será alocada para o container."
