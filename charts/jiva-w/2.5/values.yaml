@@ -91,7 +91,7 @@ sas:
 ## Configurações de url de acesso
 loadBalancer:
   dns: .teste.jivacloud.com.br
-  dnsNew: .jivacloud.com.br
+  dnsNew: ""
   jivaw:
     enabled: false
   datasync:
