@@ -154,6 +154,19 @@ questions:
   group: "Outras Aplicações"
 
 # Load Balancer
+- variable: loadBalancer.dns
+  label: "Defina o dns do Load balancer"
+  description: "Dns do Load balancer, ex: .jivacloud.com.br"
+  type: enum
+  default: ".teste.jivacloud.com.br"
+  required: true
+  options:
+    - ".teste.jivacloud.com.br"
+    - ".orcl.jivacloud.com.br"
+    - ".monitoring.jivacloud.com.br"
+    - ".jivacloud.com.br"
+  group: "Configurando Memoria e Cpu da Aplicação"
+
 - variable: loadBalancer.jivaw.enabled
   label: "Definir hostname do Jivaw para o loadBalancer"
   description: "Definir hostname do Jivaw para o loadBalancer"
