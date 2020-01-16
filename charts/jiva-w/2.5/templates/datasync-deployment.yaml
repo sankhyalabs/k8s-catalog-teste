@@ -65,7 +65,7 @@ spec:
       dnsConfig:
         options:
         - name: ndots
-          value: "0"
+          value: "15"
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       securityContext: {}
