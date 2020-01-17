@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: check-mk
-        image: {{ .Values.image }}
+        image: {{ .Values.checkmk.image }}
         imagePullPolicy: IfNotPresent
         livenessProbe:
           failureThreshold: 3
