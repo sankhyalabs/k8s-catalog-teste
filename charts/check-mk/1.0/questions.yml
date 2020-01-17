@@ -28,8 +28,8 @@ questions:
 
 - variable: volume.checkmk.size
   label: "Tamanho do volume do CheckMk"
-  description: "Digite o tamanho do volume"
-  type: string
+  description: "Digite o tamanho do volume em Giga"
+  type: integer
   required: true
   group: "Configuração do Volume"
 
@@ -37,6 +37,7 @@ questions:
 # Load Balancer
 - variable: loadBalancer.dns
   label: "Defina o dns do Load balancer"
+  default: ".monitoring.jivacloud.com.br"
   description: "Dns do Load balancer, ex: .jivacloud.com.br"
   type: string
   required: true
