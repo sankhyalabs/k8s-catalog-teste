@@ -29,7 +29,7 @@ questions:
 - variable: volume.checkmk.size
   label: "Tamanho do volume do CheckMk"
   description: "Digite o tamanho do volume em Giga"
-  type: integer
+  type: int
   required: true
   group: "Configuração do Volume"
 
