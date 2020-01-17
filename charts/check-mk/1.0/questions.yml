@@ -35,9 +35,21 @@ questions:
 
 
 # Load Balancer
-- variable: loadBalancer.dns
-  label: "Defina o dns do Load balancer"
+- variable: loadBalancer.enabled
+  label: "loadBalancer Habilitado"
   default: ".monitoring.jivacloud.com.br"
+  description: "Deseja aprontar um Load balancer"
+  default: true
+  type: boolean
+  required: true
+  group: "Configuração do Dns"
+
+
+
+- variable: loadBalancer.dns
+  show_if: "loadBalancer.enabled=true"
+  label: "Defina o dns do Load balancer"
+  default: "check-mk.monitoring.jivacloud.com.br"
   description: "Dns do Load balancer, ex: .jivacloud.com.br"
   type: string
   required: true
