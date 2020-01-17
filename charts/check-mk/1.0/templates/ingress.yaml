@@ -1,4 +1,4 @@
-{{- if Values.loadBalancer.enabled  }}
+{{- if .Values.loadBalancer.enabled  }}
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
