@@ -43,7 +43,7 @@ spec:
           timeoutSeconds: 6
         volumeMounts:
         - mountPath: /home/mgeweb/monitoring/check_mk
-          name: volume-jiva
+          name: volume-check-mk
           subPath: {{ .Release.Namespace }}/omd/sites
       dnsPolicy: ClusterFirst
       restartPolicy: Always
