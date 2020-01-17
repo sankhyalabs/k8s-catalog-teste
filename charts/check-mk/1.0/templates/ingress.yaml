@@ -12,7 +12,6 @@ spec:
       - backend:
           serviceName: check-mk
           servicePort: 5000
-        path: cmk/check_mk/login.py
 status:
   loadBalancer: {}
 {{- end }}
