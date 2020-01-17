@@ -1,0 +1,17 @@
+# Mongo
+annotations: {}
+
+imageRepository:
+  storageClass: ""
+
+volume:
+  checkmk:
+    size:  5
+
+loadBalancer:
+  enabled: true
+  dns: ".monitoring.jivacloud.com.br"
+
+checkmk:
+  imageChanged: false
+  image: checkmk/check-mk-raw:1.6.0-latest

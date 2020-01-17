@@ -1,0 +1,8 @@
+description: Check Mk
+icon: https://objectstorage.sa-saopaulo-1.oraclecloud.com/p/S_rcNBaSfLxVIQOJjfZb2PdHUTQv3y8C_BwI83fA4pY/n/grfo1sd2skos/b/jiva-temp/o/catalogIcon-checkmk.png
+home: https://web.app.jivacloud.com.br
+name: check-mk
+version: 1.0
+maintainers:
+- email: highlander.dantas@sankhya.com.br
+  name: Highlander Dantas 

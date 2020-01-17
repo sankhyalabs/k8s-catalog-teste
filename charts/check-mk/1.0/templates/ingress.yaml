@@ -1,0 +1,18 @@
+{{- if Values.loadBalancer.enabled  }}
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  generation: 1
+  name: ingress
+spec:
+  rules:
+  - host: check-mk{{ .Values.loadBalancer.dns }}
+    http:
+      paths:
+      - backend:
+          serviceName: check-mk
+          servicePort: 5000
+        path: cmk/check_mk/login.py
+status:
+  loadBalancer: {}
+{{- end }}

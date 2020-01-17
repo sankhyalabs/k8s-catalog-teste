@@ -1,0 +1,43 @@
+categories:
+- Monitoramento
+labels:
+  io.rancher.certified: partner
+questions:
+#Configuração da imagem
+- variable: checkmk.imageChanged
+  label: "Imagem Docker do Check Mk"
+  description: "Deseja usar a imagem padrão?"
+  type: boolean
+  required: true
+  group: "Configuração da Imagem"
+  show_subquestion_if: "true"
+  subquestions:
+  - variable: checkmk.image
+    label: Imagem Docker do Check Mk Nova
+    type: string
+    required: true
+    description: "Digite a nova imagem"
+
+# Configurando Volume
+- variable: imageRepository.storageClass
+  label: "StorageClass"
+  description: "Escolha Storage Class para o Check Mk"
+  type: storageclass
+  required: true
+  group: "Configuração do Volume"
+
+- variable: volume.checkmk.size
+  label: "Tamanho do volume do CheckMk"
+  description: "Digite o tamanho do volume"
+  type: string
+  required: true
+  group: "Configuração do Volume"
+
+
+# Load Balancer
+- variable: loadBalancer.dns
+  label: "Defina o dns do Load balancer"
+  description: "Dns do Load balancer, ex: .jivacloud.com.br"
+  type: string
+  required: true
+  group: "Configuração do Dns"
