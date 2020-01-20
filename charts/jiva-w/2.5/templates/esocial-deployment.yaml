@@ -24,6 +24,15 @@ spec:
       labels:
         io.kompose.service: esocial
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: monitoring
+                operator: NotIn
+                values:
+                - "true"
       containers:
       - args:
         - java -jar /home/mgeweb/DSEM/docker-sanesocial-manager.jar && sleep 5 &&

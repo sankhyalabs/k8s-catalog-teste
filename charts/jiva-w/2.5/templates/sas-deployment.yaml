@@ -21,6 +21,15 @@ spec:
       labels:
         io.kompose.service: sas
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: monitoring
+                operator: NotIn
+                values:
+                - "true"
       containers:
       - name: sas
         image: {{  .Values.imageRepository.sas.image }}:{{  .Values.imageRepository.sas.imageTag }}

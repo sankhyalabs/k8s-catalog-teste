@@ -23,6 +23,15 @@ spec:
       labels:
         io.kompose.service: jiva-w
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: monitoring
+                operator: NotIn
+                values:
+                - "true"
       containers:
       - args:
         - sudo chown -R mgeweb:mgeweb /home/mgeweb/.jboss_conf/ /home/mgeweb/sankhyaw-dpm/ /home/mgeweb/SankhyaW/Anexos

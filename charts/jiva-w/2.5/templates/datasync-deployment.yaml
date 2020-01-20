@@ -22,6 +22,15 @@ spec:
       labels:
         io.kompose.service: datasync
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: monitoring
+                operator: NotIn
+                values:
+                - "true"
       containers:
       - name: datasync
         image: {{ .Values.imageRepository.datasync.image }}:{{ .Values.imageRepository.datasync.imageTag }}
